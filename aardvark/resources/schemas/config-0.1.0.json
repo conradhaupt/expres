@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "config_version": {
+            "type": "string",
+            "description": "Config schema version"
+        },
+        "storage_providers": {
+            "type": "object",
+            "properties": {
+                "folder_storage_provider": {
+                    "type": "object",
+                    "description": "Configuration for FolderStorageProvider",
+                    "properties": {
+                        "root_dir": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Absolute path to root directory for saving experiments."
+                        },
+                        "temp_dir": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "format": "uri",
+                            "description": "The directory where unsaved experiments are stored. If this is a relative path, it will be relative to the current working directory during program execution."
+                        },
+                        "folder_format": {
+                            "type": "string",
+                            "description": "Python format string for experiment folder name."
+                        },
+                        "filename_format": {
+                            "type": "string",
+                            "description": "Python format string for ASDF filename."
+                        },
+                        "description_max_length": {
+                            "type": "integer",
+                            "description": "Maximum number of characters from the description to include in folder and file names."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: asdf://aardvark.org/asdf/schemas/experiment-0.0.0
+title: |
+  Top-level schema for every Aardvark experiment ASDF file.
+
+description: |
+  This schema contains the top-level attributes for every ASDF file, with some additional definitions for Aardvark
+  experiments, such as 'uuid'.
+
+type: object
+properties:
+  uuid:
+    description: UUID of this experiment in hexadecimal form.
+    $ref: "asdf://qiskit.org/asdf/schemas/core/uuid-0.0.0"
+  date_created:
+    description: The date and time on which this experiment was created.
+    type: string
+    format: date-time
+  asdf_library:
+    description: |
+      Describes the ASDF library that produced the file.
+    $ref: "http://stsci.edu/schemas/asdf/core/software-1.0.0"
+
+  history:
+    description: |
+      A log of transformations that have happened to the file.  May
+      include such things as data collection, data calibration
+      pipelines, data analysis etc.
+    anyOf:
+      # This is to support backwards compatibility with older history formats
+      - type: array
+        items:
+          - $ref: "http://stsci.edu/schemas/asdf/core/history_entry-1.0.0"
+      # This is the new, richer history implementation that includes
+      # extension metadata.
+      - $ref: "http://stsci.edu/schemas/asdf/core/asdf-1.1.0#/definitions/history-1.1.0"
+  description:
+    anyOf:
+      - type: string
+      - type: "null"
+  artifacts:
+    $ref: "asdf://aardvark.org/asdf/schemas/core/artifacts-0.0.0"
+
+additionalProperties: true
+# Make sure that these two metadata fields are always at the top of the file
+propertyOrder:
+  [uuid, date_created, description, asdf_library, history, artifacts]

@@ -1,0 +1,36 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: asdf://aardvark.org/asdf/schemas/core/artifacts-0.0.0
+title: |
+  Collection of floating artifacts.
+
+description: |
+  Collections of floating artifacts have a specific structure. Each artifact
+  contains a source file, being a relative path to a file, and an optional
+  description. A collection of artifacts is a mapping from unique names to
+  individual artifacts. This schema defines the collection so that only a single
+  YAML tag is used for all artifacts. Floating artifacts should only exist in a
+  collection. The definition of an artifact is redefined here so that the format
+  property is not allowed. This is because floating artifacts do not currently
+  support formats and automatic saving and loading.
+
+definitions:
+  artifact:
+    type: object
+    properties:
+      source:
+        type: string
+        format: uri
+        description: |
+          Relative path to the artifact. Must be within the same directory as the
+          ASDF file.
+      description:
+        type: string
+        optional: true
+
+type: object
+additionalProperties: true
+patternProperties:
+  ".*":
+    $ref: "#/definitions/artifact"

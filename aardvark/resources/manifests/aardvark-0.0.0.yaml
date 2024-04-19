@@ -1,0 +1,18 @@
+%YAML 1.1
+---
+id: asdf://aardvark.org/asdf/manifests/aardvark-0.0.0
+extension_uri: asdf://aardvark.org/asdf/extensions/aardvark-0.0.0
+title: ASDF Extension for Aardvark
+description: Extension for handling Aardvark experiments with ASDF.
+asdf_standard_requirement:
+  gte: 1.6.0
+tags:
+  # Override base schema to move uuid and date_created to the top of asdf files.
+  - tag_uri: tag:stsci.edu:asdf/core/asdf-1.1.0
+    schema_uri: asdf://aardvark.org/asdf/schemas/experiment-0.0.0
+  - tag_uri: asdf://aardvark.org/asdf/tags/core/artifacts-0.0.0
+    schema_uri: asdf://aardvark.org/asdf/schemas/core/artifacts-0.0.0
+  - tag_uri: asdf://aardvark.org/asdf/tags/core/artifact-0.0.0
+    schema_uri: asdf://aardvark.org/asdf/schemas/core/artifact-0.0.0
+yaml_tag_handles:
+  "!qiskit!": asdf://aardvark.org/asdf/tags

@@ -1,0 +1,21 @@
+[formatting]
+  align_comments        = true
+  align_entries         = true
+  allowed_blank_lines   = 2
+  array_auto_collapse   = true
+  array_auto_expand     = true
+  array_trailing_comma  = true
+  column_width          = 110
+  compact_arrays        = true
+  compact_inline_tables = true
+  indent_entries        = true
+  indent_string         = "  "
+  reorder_arrays        = true
+  reorder_inline_tables = true
+  reorder_keys          = true
+  trailing_newline      = true
+
+[[rule]]
+  include = ["**/pyproject.toml"]
+[rule.schema]
+  path = "https://json.schemastore.org/pyproject.json"

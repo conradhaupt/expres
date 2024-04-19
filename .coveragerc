@@ -1,0 +1,8 @@
+[run]
+branch = true
+omit =
+    ; Ignore tools that are python scripts
+    ./tools/*
+    ; We don't test our tests.
+    ./aardvark/tests/**/*
+command_line = -m pytest

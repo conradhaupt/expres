@@ -1,0 +1,30 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: asdf://aardvark.org/asdf/schemas/core/artifact-0.0.0
+title: |
+  Single artifact, bound to tree attribute at the root level.
+
+description: |
+  An artifact contains a source file, being a relative path to a file, and an
+  optional description. The name of the artifact is the attribute with an
+  Artifact value. Floating artifacts are bound to an ArtifactCollection, which
+  is serialised separately. Bound artifacts are the values of
+
+type: object
+properties:
+  source:
+    type: string
+    format: uri
+    description: |
+      Relative path to the artifact. Must be within the same directory as the
+      ASDF file.
+  format:
+    type: string
+    enum: ["npz"]
+    description: |
+      The format of the saved artifact. This only supports formats that can be
+      serialised and deserialised by aardvark.
+  description:
+    type: string
+    optional: true
