@@ -2,14 +2,14 @@
 > Aardvark is currently being renamed to Exprés (`expres`). There will not be a
 > deprecation window for this, but old data will still be loadable with the
 > renamed library. Additionally, this code was originally in a mono-repo with
-> `asdf_qiskit`, but has been separated into a new repo. There may still be some
-> mentions of it in the docs and code during the renaming/refactor.
+> `asdf-qiskit`, but has been separated into a new repo. There may still be some
+> mentions of `asdf-qiskit` in the docs and code during the renaming/refactor.
 
 > [!CAUTION]
 > Aardvark is still a WIP and very volatile. The library is primarily for
 > personal use in our PhD research at IBM Research, Zürich, though anyone is
 > welcome to use it. In its current state, it is not guaranteed that data saved
-> with this version will be loadable in future versions, though we aim for
+> with this version will be loadable in future versions, though we do aim for
 > backwards compatibility during this time.
 
 # Aardvark
@@ -21,19 +21,19 @@ scientific computing libraries in Python.
 
 ## Installation
 
-Aardvark is still under active development, so it is not yet available on PyPI.
-You can install it from source, but note that `main` is under active
-development. For stable versions, see the latest stable branch or use the `pip
-install` command below:
+Aardvark is still under active development, but will be published to PyPI in the
+near future. You can install it from source, but note that `main` is under
+active development. For release versions, see the latest `release/` branch or
+use the `pip install` command below:
 
 ```bash
-pip install "git+ssh://git@github.com/conradhaupt/expres.git@stable/0.1#subdirectory=aardvark"
+pip install "git+ssh://git@github.com/conradhaupt/expres.git@release/0.1"
 ```
 
 ## Dependencies
 
 Aardvark uses ASDF, which in-turn requires [PyYAML](https://pyyaml.org/). As
-Aardvark also saves figures and arrays, it depends on Matplotlib and Numpy.
+Aardvark also saves figures and arrays, it depends on Matplotlib and NumPy.
 
 ## Documentation
 
