@@ -1,3 +1,11 @@
+[build-system]
+  build-backend = "uv_build"
+  requires      = ["uv_build>=0.10.3,<0.11.0"]
+
+[tool.uv.build-backend]
+  module-name = "aardvark"
+  module-root = ""
+
 [project]
   authors = [{email = "conrad@conradhaupt.com", name = "Conrad Haupt"}]
   classifiers = [
@@ -19,6 +27,7 @@
   ]
   dependencies = [
     "PyYAML>=6.0.2",                             # Require PyYaml versions that support 3.13
+    "asdf-qiskit~=0.1",
     "asdf>=5.0.0",
     "jsonschema~=4.24",
     "matplotlib>=3.9.4",
@@ -26,26 +35,28 @@
     "typing_extensions; python_version<='3.10'",
   ]
   description = "Manage experiments and associated \"aard\"ifacts easily, and without having to worry about Pickle."
-  dynamic = ["version"]
   license = {file = "LICENSE.txt"}
   maintainers = [{email = "conrad@conradhaupt.com", name = "Conrad Haupt"}]
   name = "aardvark"
   readme = "README.md"
   requires-python = ">=3.10"
+  version = "0.1.3"
 
-[project.optional-dependencies]
-  dev = ["aardvark[docs,tests]"]
-  docs = ["furo", "sphinx", "sphinx-asdf", "sphinx_design"]
-  runtime = ["qiskit-ibm-runtime>=0.31.0"]
-  tests = [
+[dependency-groups]
+  dev = [
     "ddt==1.7.2",
+    "furo",
     "pytest",
-    "pytest-antilru~=2.0.0",
     "pytest-asdf-plugin",
     "pytest-benchmark~=5.1",
     "pytest-cov",
     "ruff",
+    "sphinx",
+    "sphinx-asdf",
+    "sphinx_design",
   ]
+  docs = ["furo", "sphinx", "sphinx-asdf", "sphinx_design"]
+  tests = ["ddt==1.7.2", "pytest", "pytest-asdf-plugin", "pytest-benchmark~=5.1", "pytest-cov", "ruff"]
 
 [project.urls]
   Documentation = "https://github.com/conradhaupt/aardvark#readme"
@@ -61,23 +72,6 @@
   addopts                   = "-W error"
   asdf_schema_root          = 'aardvark/resources/schemas/'
   asdf_schema_tests_enabled = 'true'
-
-
-[build-system]
-  build-backend = "poetry.core.masonry.api"
-  requires      = ["poetry-core>=2.0.0,<3.0.0"]
-
-[tool.poetry]
-  packages = [{from = ".", include = "aardvark"}]
-  version  = "0.1.3"
-
-[tool.poetry.requires-plugins]
-  poetry-dynamic-versioning = {extras = ["plugin"], version = ">=1.0.0,<2.0.0"}
-
-[tool.poetry-dynamic-versioning]
-  enable = true
-  style  = "semver"
-  vcs    = "git"
 
 [tool.pyright]
   # Target 3.10, the minimum version we support.
