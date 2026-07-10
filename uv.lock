@@ -18,7 +18,6 @@ dependencies = [
     { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "matplotlib", version = "3.11.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "pyyaml" },
-    { name = "qiskit" },
     { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
 
@@ -65,7 +64,6 @@ requires-dist = [
     { name = "jsonschema", specifier = "~=4.24" },
     { name = "matplotlib", specifier = ">=3.9.4" },
     { name = "pyyaml", specifier = ">=6.0.2" },
-    { name = "qiskit" },
     { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
 
@@ -785,7 +783,7 @@ name = "importlib-metadata"
 version = "9.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "zipp" },
+    { name = "zipp", marker = "python_full_version < '3.12'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a9/01/15bb152d77b21318514a96f43af312635eb2500c96b55398d020c93d86ea/importlib_metadata-9.0.0.tar.gz", hash = "sha256:a4f57ab599e6a2e3016d7595cfd72eb4661a5106e787a95bcc90c7105b831efc", size = 56405, upload-time = "2026-03-20T06:42:56.999Z" }
 wheels = [

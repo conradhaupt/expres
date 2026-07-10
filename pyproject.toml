@@ -31,7 +31,6 @@
     "asdf>=5.0.0",
     "jsonschema~=4.24",
     "matplotlib>=3.9.4",
-    "qiskit",
     "typing_extensions; python_version<='3.10'",
   ]
   description = "Manage experiments and associated \"aard\"ifacts easily, and without having to worry about Pickle."
