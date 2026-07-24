@@ -20,11 +20,8 @@ from io import BufferedRandom, BufferedReader, BufferedWriter, FileIO, TextIOWra
 from typing import IO, TYPE_CHECKING, Any, BinaryIO, Literal, NoReturn, overload
 from uuid import UUID, uuid4
 
-from aardvark.experiment.utils import (
-    register_cls_bound_artifacts_with_context,
-    populate_default_attrs_if_nonexistent,
-)
 import asdf
+from matplotlib.figure import Figure
 
 from aardvark.artifacts import (
     ArtifactCollection,
@@ -38,6 +35,10 @@ from aardvark.dataclasses import (
     dataclass,
     field,
 )
+from aardvark.experiment.utils import (
+    populate_default_attrs_if_nonexistent,
+    register_cls_bound_artifacts_with_context,
+)
 from aardvark.storage.base_provider import BaseContext, ContextState
 from aardvark.utils.io.typeshed import (
     OpenBinaryMode,
@@ -48,7 +49,6 @@ from aardvark.utils.io.typeshed import (
     StrOrPath,
     _Opener,
 )
-from matplotlib.figure import Figure
 
 try:
     from typing import Self
@@ -60,22 +60,43 @@ _getattr = object.__getattribute__
 _setattr = object.__setattr__
 
 
+# Default Factories for Experiment
+def new_uuid() -> UUID:
+    """A new UUID suitable for an :class:`Experiment` instance.
+
+    Returns:
+        A new UUID instance, currently version 4.
+    """
+    return uuid4()
+
+
 def current_datetime() -> datetime:
+    """The current UTC date and time.
+
+    Used for :attr:`Experiment.date_created`.
+
+    Returns:
+        The current date and time at UTC.
+    """
     return datetime.now(timezone.utc)
 
 
+# Base Experiment dataclass
 @dataclass(kw_only=True)
 class Experiment(Dataclass):
     CUSTOM_SCHEMA = "asdf://aardvark.org/asdf/schemas/experiment-0.0.0"
 
-    uuid: UUID = field(default_factory=uuid4, init=False, repr=False)
+    uuid: UUID = field(default_factory=lambda: new_uuid(), init=False, repr=False)
     """The unique identifier for this experiment.
 
     Automatically set on creating of the experiment. Can be reset with :meth:`reset`.
     """
 
+    # Note, we set the default factory to a lambda function to defer evaluating
+    # current_datetime to Experiment creation. This is necessary to mock
+    # current_datetime in tests.
     date_created: datetime = field(
-        default_factory=current_datetime, init=False, repr=False
+        default_factory=lambda: current_datetime(), init=False, repr=False
     )
     """The UTC date and time when this experiment was created."""
 
