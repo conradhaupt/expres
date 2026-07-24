@@ -247,4 +247,5 @@ aardvark/_version.py
 # Ignore the build directory for docs
 html
 docs/apidocs/aardvark.*rst
-
+# Ignore saved fixtures for testing
+.pytest_aardvark_fixtures

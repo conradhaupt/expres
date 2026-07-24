@@ -1,6 +1,6 @@
 # This code is part of Aardvark.
 #
-# Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
+# Copyright 2024-2026 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 from asdf.extension import Extension, ManifestExtension
 
 from aardvark.asdf.converters.artifacts_converter import ArtifactConverter
+from aardvark.asdf.converters.uuid import UUIDConverter
 
 
 class AardvarkExtension(ManifestExtension):
@@ -24,13 +25,18 @@ class AardvarkExtension(ManifestExtension):
 
     @property
     def yaml_tag_handles(self):
-        return {"!aardvark!": "asdf://aardvark.org/asdf/tags/"}
+        return {
+            # For first-class Aardvark tags
+            "!aardvark!": "asdf://aardvark.org/asdf/tags/",
+            # For legacy tags moved from ASDF Qiskit to Aardvark
+            "!qiskit!": "asdf://qiskit.org/asdf/tags/",
+        }
 
 
 def get_extensions() -> list["Extension"]:
     return [
         AardvarkExtension.from_uri(
             "asdf://aardvark.org/asdf/manifests/aardvark-0.0.0",
-            converters=[ArtifactConverter()],
+            converters=[ArtifactConverter(), UUIDConverter()],
         )
     ]

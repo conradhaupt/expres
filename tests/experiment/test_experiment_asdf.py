@@ -79,5 +79,5 @@ class TestExperimentASDF(TestCase):
         _file = BytesIO()
         exp._tree.write_to(_file)
         _asdf_str = str(_file.getvalue())
-        self.assertTrue("uuid: !qiskit!core/uuid" in _asdf_str)
+        self.assertIn("uuid: !qiskit!core/uuid", _asdf_str)
         self.assertTrue("date_created: {}".format(str(DUMMY_DATETIME)) in _asdf_str)

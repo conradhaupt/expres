@@ -24,11 +24,10 @@ from unittest import mock
 import asdf
 import ddt
 import numpy as np
+
 from aardvark.artifacts import ArtifactCollection, ArtifactInfo
 from aardvark.utils.tests import TestCase
-
-# TODO: Copy over test utils from ASDF Qiskit.
-from asdf_qiskit.tests.utils import roundtrip_object
+from aardvark.utils.tests import roundtrip_object
 
 
 @ddt.ddt
