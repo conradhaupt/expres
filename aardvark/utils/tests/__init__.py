@@ -15,3 +15,4 @@
 # limitations under the License.
 
 from aardvark.utils.tests.test_case import TestCase
+from aardvark.utils.tests.helpers import roundtrip_object

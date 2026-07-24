@@ -32,6 +32,13 @@ def get_resource_mappings():
         filename_pattern="*.yaml",
         stem_filename=True,
     )
+    schema_mapping_legacy = DirectoryResourceMapping(
+        schemas_path,
+        "asdf://qiskit.org/asdf/schemas/",
+        recursive=True,
+        filename_pattern="*.yaml",
+        stem_filename=True,
+    )
     manifests_mapping = DirectoryResourceMapping(
         manifests_path,
         "asdf://aardvark.org/asdf/manifests/",
@@ -41,5 +48,6 @@ def get_resource_mappings():
     )
     return [
         schema_mapping,
+        schema_mapping_legacy,
         manifests_mapping,
     ]

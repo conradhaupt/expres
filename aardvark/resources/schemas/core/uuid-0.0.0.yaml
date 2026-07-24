@@ -1,0 +1,8 @@
+$schema: http://stsci.edu/schemas/yaml-schema/draft-01
+id: asdf://qiskit.org/asdf/schemas/core/uuid-0.0.0
+title: UUID
+description: >-
+  UUID represented as a 32-character hexadecimal string. Parsed into binary, the UUID is a unique identifier.
+  Not restricted to any specific UUID format.
+type: string
+pattern: ^[a-zA-Z0-9]{32}$

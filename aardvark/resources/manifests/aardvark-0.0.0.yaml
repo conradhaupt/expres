@@ -14,5 +14,8 @@ tags:
     schema_uri: asdf://aardvark.org/asdf/schemas/core/artifacts-0.0.0
   - tag_uri: asdf://aardvark.org/asdf/tags/core/artifact-0.0.0
     schema_uri: asdf://aardvark.org/asdf/schemas/core/artifact-0.0.0
+  - tag_uri: asdf://qiskit.org/asdf/tags/core/uuid-0.0.0
+    schema_uri: asdf://qiskit.org/asdf/schemas/core/uuid-0.0.0
 yaml_tag_handles:
-  "!qiskit!": asdf://aardvark.org/asdf/tags
+  "!aardvark!": asdf://aardvark.org/asdf/tags
+  "!qiskit!": asdf://qiskit.org/asdf/tags
