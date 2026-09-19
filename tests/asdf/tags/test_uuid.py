@@ -1,4 +1,4 @@
-# This code is part of ASDF Qiskit.
+# This code is part of Aardvark.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #

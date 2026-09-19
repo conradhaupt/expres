@@ -51,9 +51,7 @@ storage_providers:
   # FolderProvider configuration values.
   folder_storage_provider:
     # Root directory for all experiments.
-    root_dir: "/home/user/{dir}" """.format(
-            dir=dir
-        )
+    root_dir: "/home/user/{dir}" """.format(dir=dir)
         + """
     # Python format string for the ASDF filename.
     filename_format: "{experiment_name}_{date_created:%Y%m%d_%H%M}{desc}_{uuid_short}.asdf"
@@ -71,9 +69,7 @@ def DUMMY_LOCAL_CONFIG_YAML(prefix: str) -> str:
         """
 storage_providers:
     folder_storage_provider:
-        folder_format: "{prefix}""".format(
-            prefix=prefix
-        )
+        folder_format: "{prefix}""".format(prefix=prefix)
         + """_{experiment_name}_{date_created:%Y%m%d_%H%M}{desc}_{uuid_short}"
 """
     )
@@ -262,9 +258,9 @@ class TestConfigWithoutLoading(MockConfigTestCase):
                 msg="get_config() and current temporary config do not match after modifying root entry.",
             )
 
-            _temp_config["storage_providers"]["folder_storage_provider"][
-                "temp_dir"
-            ] = "/this_is_a_test"
+            _temp_config["storage_providers"]["folder_storage_provider"]["temp_dir"] = (
+                "/this_is_a_test"
+            )
             self.assertNotEqual(
                 _temp_config["storage_providers"]["folder_storage_provider"][
                     "temp_dir"
@@ -305,9 +301,9 @@ class TestConfigWithoutLoading(MockConfigTestCase):
                 "temp_config() doesn't match previous context config.",
             )
             _temp_config["config_version"] = _new_version
-            _temp_config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = _new_root_dir
+            _temp_config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                _new_root_dir
+            )
 
             # Assert that we didn't modify the first config
             self.assertNotEqual(
@@ -394,9 +390,7 @@ class TestConfigWithoutLoading(MockConfigTestCase):
             ] = _root_dir_first_context
 
             # Create a dictionary of the second config, for later comparison.
-            _first_dict = (
-                _first_context_config.__dict__()
-            )  # pyright: ignore[reportCallIssue]
+            _first_dict = _first_context_config.__dict__()  # pyright: ignore[reportCallIssue]
 
             # Enter second context and modify further.
             with config.temp_config() as _second_context_config:

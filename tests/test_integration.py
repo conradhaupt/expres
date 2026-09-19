@@ -63,9 +63,9 @@ class TestIntegration(TestCase):
         expected_z = [9, 8, 7, 6]
         with temp_config() as _config:
             _root_dir = tempfile.gettempdir()
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = _root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                _root_dir
+            )
 
             inst = MyExp(x=expected_x, y=expected_y)
             inst.z = expected_z
@@ -114,9 +114,9 @@ class TestIntegration(TestCase):
         def _save() -> Path:
             with temp_config() as _config:
                 _root_dir = tempfile.gettempdir()
-                _config["storage_providers"]["folder_storage_provider"][
-                    "root_dir"
-                ] = _root_dir
+                _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                    _root_dir
+                )
 
                 inst = MyExp(x=expected_x, y=expected_y)
                 inst.z = expected_z
@@ -169,9 +169,9 @@ class TestIntegration(TestCase):
 
         with temp_config() as _config:
             _root_dir = tempfile.gettempdir()
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = _root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                _root_dir
+            )
 
             inst = MyExp(x=[0, 1, 2, 3], y=[4, 5, 6, 7])
             inst.z = [9, 8, 7, 6]
@@ -202,9 +202,9 @@ class TestIntegration(TestCase):
 
         with temp_config() as _config:
             _root_dir = tempfile.gettempdir()
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = _root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                _root_dir
+            )
 
             inst.w = np.arange(100)
             inst.save()
@@ -244,9 +244,9 @@ class TestIntegration(TestCase):
 
         with temp_config() as _config:
             _root_dir = tempfile.gettempdir()
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = _root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                _root_dir
+            )
 
             inst.save()
 
@@ -314,9 +314,9 @@ class TestIntegration(TestCase):
             msg="Bound artifact attr not as expected.",
         )
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = tempfile.gettempdir()
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                tempfile.gettempdir()
+            )
 
             inst.save()
 
@@ -359,9 +359,9 @@ class TestIntegration(TestCase):
             f.write("This is a test.")
 
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = tempfile.gettempdir()
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                tempfile.gettempdir()
+            )
 
             inst.save()
 

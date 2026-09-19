@@ -1,4 +1,4 @@
-# This code is part of Exprés.
+# This code is part of Aardvark.
 #
 # Copyright 2024-2026 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #

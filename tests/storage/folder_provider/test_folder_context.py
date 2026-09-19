@@ -110,9 +110,9 @@ class TestFolderContext(TestCase):
             prefix="aardvark_test"
         )
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "temp_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["temp_dir"] = (
+                user_root_dir
+            )
             provider = FolderProvider()
             context = provider.new_context()
 
@@ -157,9 +157,9 @@ class TestFolderContext(TestCase):
 
         # Save experiment
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                user_root_dir
+            )
             self.assertEqual(
                 get_config()["storage_providers"]["folder_storage_provider"][
                     "root_dir"
@@ -218,9 +218,9 @@ class TestFolderContext(TestCase):
 
         # Save experiment
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                user_root_dir
+            )
             context.save(experiment=tree)
 
         # Check context values
@@ -288,9 +288,9 @@ class TestFolderContext(TestCase):
 
         # Save experiment
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                user_root_dir
+            )
             expected_path = format_path(
                 **format_kwargs, root_dir=str(expected_root_dir)
             )
@@ -357,9 +357,9 @@ class TestFolderContext(TestCase):
 
         # Save experiment
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                user_root_dir
+            )
             self.assertEqual(
                 get_config()["storage_providers"]["folder_storage_provider"][
                     "root_dir"
@@ -429,9 +429,9 @@ class TestFolderContext(TestCase):
 
         # Save experiment
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                user_root_dir
+            )
             context.save(experiment=tree)
 
         _path = context._current_path
@@ -498,9 +498,9 @@ class TestFolderContext(TestCase):
         # *** 'save' an experiment
         exp = self.get_experiment(context=_context)
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = user_root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                user_root_dir
+            )
             exp.save()
 
         log_str = "2025.01.01 00:00 This is a test\n"
@@ -646,7 +646,6 @@ class TestFolderContext(TestCase):
 
 @ddt.ddt
 class TestFolderContext_withPredefinedHome(TestFolderContext):
-
     _home: str
 
     def setUp(self) -> None:
