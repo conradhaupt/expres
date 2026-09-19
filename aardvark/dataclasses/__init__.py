@@ -17,8 +17,7 @@
 import dataclasses as dc
 from typing import Protocol, TypeAlias
 
-# from aardvark.artifacts.typing import ArtifactFormat
-ArtifactFormat: TypeAlias = str
+from aardvark.artifacts.typing import ArtifactFormat
 
 dataclass = dc.dataclass
 MISSING = dc.MISSING
