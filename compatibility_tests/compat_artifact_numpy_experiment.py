@@ -19,42 +19,40 @@ from typing import Any
 import numpy as np
 import pytest
 
-from aardvark import Experiment, dataclass
 from pytest_aardvark_fixtures import assert_tree_match, save_fixture
+
+from aardvark import Experiment, artifact, dataclass
 
 
 @dataclass(kw_only=True)
 class MockExperiment(Experiment):
     field1: int
     field2: tuple[float, ...]
-    arr1: np.ndarray[tuple[int], np.dtype[np.floating]]
-    arr2: np.ndarray[tuple[int, int], np.dtype[np.complex128]]
+
+    art1: np.ndarray[tuple[int], np.dtype[np.floating]] = artifact(format="npz")
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 @save_fixture
-def _simple_experiment(mock_default_factories) -> MockExperiment:
+def _artifact_experiment(mock_default_factories) -> MockExperiment:
+    from uuid import uuid4
 
     inst = MockExperiment(
-        field1=0,
-        field2=(0.0, 0.1, 0.2, 0.3),
-        arr1=np.array([3.1415]),
-        arr2=np.array([[1.0, 1.0j], [-1.0j, 1.0]]),
+        field1=0, field2=(0.0, 0.1, 0.2, 0.3), art1=np.zeros((5, 5), dtype=np.float64)
     )
 
     return inst
 
 
 def compat_simple_experiment(
-    _simple_experiment: MockExperiment,
+    _artifact_experiment: MockExperiment,
     saved_fixtures: dict[str, Any],
     mock_default_factories,
 ):
-    _msg = "Loaded experiment is incorrect.".format(str(_simple_experiment))
+    _msg = "Loaded experiment is incorrect.".format(str(_artifact_experiment))
 
-    _expected_tree = _simple_experiment
-    _loaded_tree = saved_fixtures["_simple_experiment"]
-    # assert _simple_experiment == saved_fixtures["_simple_experiment"], _msg
+    _expected_tree = _artifact_experiment
+    _loaded_tree = saved_fixtures["_artifact_experiment"]
     assert_tree_match(
         old_tree=_expected_tree._tree._tree, new_tree=_loaded_tree._tree._tree
     )

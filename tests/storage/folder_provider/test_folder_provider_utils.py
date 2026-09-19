@@ -123,7 +123,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
-        )
+        ),
     )
     def test_target_path_for_experiment_from_config(self):
         """Test target_path_for with an experiment and format strings from the config file."""
@@ -144,7 +144,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
-        )
+        ),
     )
     def test_target_path_for_experiment_with_overrides(self):
         """Test target_path_for with an experiment and format strings as arguments."""
@@ -179,7 +179,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
-        )
+        ),
     )
     def test_target_path_for_asdffile_from_config(self):
         """Test target_path_for with an AsdfFile and format strings from the config file."""
@@ -208,7 +208,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
-        )
+        ),
     )
     def test_target_path_for_asdffile_with_overrides(self):
         """Test target_path_for with an AsdfFile and format strings as arguments."""

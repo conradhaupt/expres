@@ -1,0 +1,26 @@
+# Delete any sections you do not need.
+#
+# Each bullet point should be a standalone release note that can be read
+# without additional context.
+#
+# Documentation-only and internal-only changes generally do not require
+# release notes.
+#
+# Use Sphinx cross-references such as :class:`.MyClass` or
+# :meth:`.MyClass.my_method` when referring to public APIs.
+#
+# Use `- |` for multi-line entries when needed.
+
+features:
+  - |
+    Add :class:`Experiment` class for data and artifact management. Supports
+    artifacts, Dataclass subclasses, and save/load functionality with :mod:`asdf`.
+  - |
+    Split ASDF Qiskit from Aardvark, to be renamed Exprés. ASDF Qiskit to be
+    removed as dependency in 0.2.0.
+  - |
+    Add compatibility tests to validate that data saved with older versions can
+    be loaded with the latest version.
+
+deprecations:
+  - This will be the last version that requires ASDF Qiskit.

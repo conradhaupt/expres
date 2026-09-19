@@ -18,4 +18,4 @@ from aardvark.config import get_config, temp_config
 from aardvark.dataclasses import artifact, dataclass, field
 from aardvark.experiment import Experiment
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"

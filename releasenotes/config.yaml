@@ -1,0 +1,63 @@
+---
+encoding: utf8
+default_branch: main
+earliest_version: 0.1.4
+collapse_pre_releases: false
+stop_at_branch_base: true
+branch_name_prefix: release
+branch_name_re: release/.+
+branch_sort_prefix: release/zzz
+sections:
+  # The prelude section is implicitly included.
+  - [features, New Features]
+  - [upgrade, Upgrade Notes]
+  - [deprecations, Deprecations]
+  - [fixes, Bug Fixes]
+  - [issues, Known Issues]
+# Change prelude_section_name to 'release_summary' from default value
+# 'prelude'.
+prelude_section_name: release_summary
+template: |
+  # Delete any sections you do not need.
+  #
+  # Each bullet point should be a standalone release note that can be read
+  # without additional context.
+  #
+  # Documentation-only and internal-only changes generally do not require
+  # release notes.
+  #
+  # Use Sphinx cross-references such as :class:`.MyClass` or
+  # :meth:`.MyClass.my_method` when referring to public APIs.
+  #
+  # Use `- |` for multi-line entries when needed.
+
+  features:
+    - New user-visible functionality.
+
+  fixes:
+    - Bug fixes and behavior corrections.
+
+  upgrade:
+    - |
+      Changes that require users to modify their code or configuration.
+      Include migration guidance when appropriate.
+
+  deprecations:
+    - |
+      Deprecated functionality. Explain what users should use instead
+      and when the deprecated feature is expected to be removed.
+
+  issues:
+    - |
+      Known issues which will be addressed in the future. Explain the downstream
+      implications and any workarounds, if they exist.
+# Until the 1.0.0 release, we assign 'upgrade'-level changes to the minor semver
+# part. With 1.0.0, 'upgrade' should be moved to semver_major.
+semver_major: []
+semver_minor:
+  - features
+  - upgrade
+semver_patch:
+  - fixes
+  - deprecations
+  - issues
