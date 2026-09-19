@@ -49,6 +49,7 @@
     "pytest-asdf-plugin",
     "pytest-benchmark~=5.1",
     "pytest-cov",
+    "reno>=4.1.0",
     "ruff",
     "sphinx",
     "sphinx-asdf",
