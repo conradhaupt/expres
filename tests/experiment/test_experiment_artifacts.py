@@ -65,9 +65,9 @@ class TestExperimentSaveLoadArtifacts(TestCase):
         """Test that floating artifacts are actually created."""
         exp, root_dir = get_experiment_and_root_dir()
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                root_dir
+            )
             exp.save()
 
         self.assertTrue(isinstance(exp._context, FolderContext))
@@ -88,9 +88,9 @@ class TestExperimentSaveLoadArtifacts(TestCase):
         """Test that saving actually creates the file."""
         exp, root_dir = get_experiment_and_root_dir()
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                root_dir
+            )
             exp.save()
 
         self.assertTrue(isinstance(exp._context, FolderContext))
@@ -103,9 +103,9 @@ class TestExperimentSaveLoadArtifacts(TestCase):
         """Test that saving actually creates the file."""
         exp, root_dir = get_experiment_and_root_dir()
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                root_dir
+            )
             exp.save()
             exp_path = exp._context._current_path
 
@@ -136,9 +136,9 @@ class TestExperimentSaveLoadArtifacts(TestCase):
         """Test that opening an artifact with different arguments works."""
         exp, root_dir = get_experiment_and_root_dir()
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                root_dir
+            )
             # We create an artifact which we will try to retrieve later.
             with exp.open_artifact(
                 file="artifact.txt",
@@ -175,9 +175,9 @@ class TestExperimentSaveLoadArtifacts(TestCase):
         """Test that writing to an existing artifact, with different open_artifact arguments, works."""
         exp, root_dir = get_experiment_and_root_dir()
         with temp_config() as _config:
-            _config["storage_providers"]["folder_storage_provider"][
-                "root_dir"
-            ] = root_dir
+            _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                root_dir
+            )
             # We create an artifact which we will try to retrieve later.
             with exp.open_artifact(
                 file="artifact.txt",
@@ -239,9 +239,9 @@ class TestExperimentSaveLoadArtifacts(TestCase):
             exp, root_dir = get_experiment_and_root_dir()
             fig = plt.figure()
             with temp_config() as _config:
-                _config["storage_providers"]["folder_storage_provider"][
-                    "root_dir"
-                ] = root_dir
+                _config["storage_providers"]["folder_storage_provider"]["root_dir"] = (
+                    root_dir
+                )
                 # We create an artifact which we will try to retrieve later.
                 exp.savefig(
                     fig,

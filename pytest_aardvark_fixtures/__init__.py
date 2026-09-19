@@ -1,4 +1,4 @@
-# This code is part of ASDF Qiskit.
+# This code is part of Aardvark.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -75,10 +75,8 @@ def assert_tree_match(old_tree: asdf.AsdfFile, new_tree: asdf.AsdfFile):
             for a, b in zip(old, new):
                 recurse(a, b)
         elif all(
-            [
-                isinstance(obj, (np.ndarray, asdf.tags.core.NDArrayType))
-                for obj in (old, new)
-            ]
+            isinstance(obj, (np.ndarray, asdf.tags.core.NDArrayType))
+            for obj in (old, new)
         ):
             # If both _trees_ are numpy arrays, compare specific attributes.
             with warnings.catch_warnings():

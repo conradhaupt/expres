@@ -42,7 +42,6 @@ class TestCase(UnitTestTestCase):
     def tearDown(self) -> None:
         os.environ["HOME"] = self._previous_home
 
-
     def roundtrip_experiment(self, experiment: E) -> E:
         """Return a 'copy' of ``experiment`` that has been through a round-trip serialisation.
 

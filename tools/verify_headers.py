@@ -126,7 +126,7 @@ def validate_header(file_path):
             return (
                 file_path,
                 False,
-                f"Header apache text string doesn't match:\n {apache_text_slashes}",
+                f"Header apache text string doesn't match:\n{apache_text_slashes}",
             )
     else:  # .py ending
         if "".join(lines[start : start + 2]) != header:
@@ -141,7 +141,7 @@ def validate_header(file_path):
             return (
                 file_path,
                 False,
-                f"Header apache text string doesn't match:\n {apache_text}",
+                f"Header apache text string doesn't match:\n{apache_text}",
             )
     return (file_path, True, None)
 
