@@ -39,7 +39,7 @@ copyright = "2025, Conrad Haupt"
 author = "Conrad Haupt"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.2"
+release = "0.1.4"
 
 
 # -- General configuration ---------------------------------------------------
