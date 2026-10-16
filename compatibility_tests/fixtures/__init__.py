@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2026 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -35,8 +35,14 @@ def mock_default_factories():
     """
     _fixed_uuid = UUID(hex="3f4b3306-ac5f-4066-9d5c-c82ac0f6203a")
     _fixed_datetime = datetime(2063, 4, 5, 17, 1, 0, tzinfo=ZoneInfo("America/Denver"))
+    try:
+        import aardvark.experiment.experiment
+        _patch_target = "aardvark.experiment.experiment"
+    except ImportError:
+        _patch_target = "expres.experiment.experiment"
+
     with mock.patch.multiple(
-        "aardvark.experiment.experiment",
+        _patch_target,
         new_uuid=mock.MagicMock(return_value=_fixed_uuid),
         current_datetime=mock.MagicMock(return_value=_fixed_datetime),
     ):

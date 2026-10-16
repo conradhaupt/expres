@@ -1,27 +1,25 @@
 > [!IMPORTANT]
-> Aardvark is currently being renamed to Exprés (`expres`). There will not be a
-> deprecation window for this, but old data will still be loadable with the
-> renamed library. Additionally, this code was originally in a mono-repo with
-> `asdf-qiskit`, but has been separated into a new repo. There may still be some
-> mentions of `asdf-qiskit` in the docs and code during the renaming/refactor.
+> This code was originally in a mono-repo with `asdf-qiskit`, but has been
+> separated into a new repo. There may still be some mentions of `asdf-qiskit`
+> in the docs and code during the renaming/refactor.
 
 > [!CAUTION]
-> Aardvark is still a WIP and very volatile. The library is primarily for
-> personal use in our PhD research at IBM Research, Zürich, though anyone is
-> welcome to use it. In its current state, it is not guaranteed that data saved
-> with this version will be loadable in future versions, though we do aim for
-> backwards compatibility during this time.
+> Exprés is still a WIP and volatile. The library is primarily for personal use
+> in our PhD research at IBM Research, Zürich, though anyone is welcome to use
+> it. In its current state, we cannot guarantee there are no bugs. But our goal
+> is to ensure data saved now will be loadable in future versions.
 
-# Aardvark
+# Exprés
 
-Aardvark, a play on "artifact", integrates Python dataclasses and
+Exprés, the Catalan word for express, integrates Python dataclasses and
 [ASDF](https://asdf.readthedocs.io/en/latest/), so that researchers can easily
 save and load experimental data with [Qiskit](https://qiskit.org/) and other
-scientific computing libraries in Python.
+scientific computing libraries in Python. Qiskit support is provided by [ASDF
+Qiskit](https://github.com/conradhaupt/asdf-qiskit/)
 
 ## Installation
 
-Aardvark is still under active development, but will be published to PyPI in the
+Exprés is still under active development and will be published to PyPI in the
 near future. You can install it from source, but note that `main` is under
 active development. For release versions, see the latest `release/` branch or
 use the `pip install` command below:
@@ -32,8 +30,8 @@ pip install "git+ssh://git@github.com/conradhaupt/expres.git@release/0.1"
 
 ## Dependencies
 
-Aardvark uses ASDF, which in-turn requires [PyYAML](https://pyyaml.org/). As
-Aardvark also saves figures and arrays, it depends on Matplotlib and NumPy.
+Exprés uses ASDF, which in-turn requires [PyYAML](https://pyyaml.org/). As
+Exprés also saves figures and arrays, it depends on Matplotlib and NumPy.
 
 ## Documentation
 

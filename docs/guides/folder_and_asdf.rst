@@ -23,8 +23,8 @@ the following contents:
     import numpy as np
     import numpy.typing as npt
 
-    # We import the important class and functions from Aardvark.
-    from aardvark import Experiment, artifact, dataclass, field
+    # We import the important class and functions from expres.
+    from expres import Experiment, artifact, dataclass, field
 
     # All experiments must be dataclasses.
     @dataclass
@@ -75,11 +75,11 @@ Let's breakdown what is happening in this script.
     import numpy as np
     import numpy.typing as npt
 
-    # We import the important class and functions from Aardvark.
-    from aardvark import Experiment, artifact, dataclass, field
+    # We import the important class and functions from expres.
+    from expres import Experiment, artifact, dataclass, field
 
 Here we import the necessary modules for our simulation. All the important
-functionality from Aardvark is available as root-module imports. This includes
+functionality from expres is available as root-module imports. This includes
 :class:`Experiment`, :func:`artifact`, :func:`dataclass`, and :func:`field`. We
 use these to define our experiment class, which has to be a dataclass.
 
@@ -176,7 +176,7 @@ The first file is our script. The folder represents an experiment we created and
 saved. We can tell the Experiment class and creation date from the folder name:
 the class is called ``Simulation`` and it was created on 14 November, 2026 at 12
 minutes past midnight UTC time. Note that all dates and times created by
-Aardvark are in UTC time. The last part of the names, ``3b620d7d``, is the first
+Exprés are in UTC time. The last part of the names, ``3b620d7d``, is the first
 eight hexadecimal characters of the experiment's :class:`UUID`. Each experiment
 instance has a unique identifier for easier tracking.
 
@@ -204,9 +204,9 @@ this guide.
     %YAML 1.1
     %TAG ! tag:stsci.edu:asdf/
     %TAG !qiskit! asdf://qiskit.org/asdf/tags/
-    %TAG !aardvark! asdf://aardvark.org/asdf/tags/
+    %TAG !expres! asdf://expres.org/asdf/tags/
     --- !core/asdf-1.1.0
-    uuid: !qiskit!core/uuid-0.0.0 3b620d7d7d024a01b2b62f25988b3461
+    uuid: !expres!core/uuid-0.2.0 3b620d7d7d024a01b2b62f25988b3461
     date_created: 2026-11-14 00:12:12.927647+00:00
     description: null
     asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
@@ -215,14 +215,14 @@ this guide.
     extensions:
     - !core/extension_metadata-1.0.0
       ...
-    artifacts: !aardvark!core/artifacts-0.0.0
+    artifacts: !expres!core/artifacts-0.2.0
         fig1.pdf: {source: fig1.pdf}
     energies: !core/ndarray-1.1.0
         byteorder: little
         datatype: float64
         shape: [100]
         source: 0
-    metrics: !aardvark!core/artifact-0.0.0 {format: npz, source: metrics_over_time.npz}
+    metrics: !expres!core/artifact-0.2.0 {format: npz, source: metrics_over_time.npz}
     params: [0.5, 0.5]
     t_steps: [0.0, 0.1111111111111111, 0.2222222222222222, 0.3333333333333333, 0.4444444444444444,
       0.5555555555555556, 0.6666666666666666, 0.7777777777777777, 0.8888888888888888,
@@ -244,7 +244,7 @@ ASDF and YAML Header
     %YAML 1.1
     %TAG ! tag:stsci.edu:asdf/
     %TAG !qiskit! asdf://qiskit.org/asdf/tags/
-    %TAG !aardvark! asdf://aardvark.org/asdf/tags/
+    %TAG !expres! asdf://expres.org/asdf/tags/
 
 The first part, the header, is there for ASDF to keep track of the ASDF standard
 used for the file, the YAML version, and aliases for YAML tags. This will always
@@ -256,7 +256,7 @@ Experiment Identifiers and ASDF properties
 .. code-block:: yaml
 
     --- !core/asdf-1.1.0
-    uuid: !qiskit!core/uuid-0.0.0 3b620d7d7d024a01b2b62f25988b3461
+    uuid: !expres!core/uuid-0.2.0 3b620d7d7d024a01b2b62f25988b3461
     date_created: 2026-11-14 00:12:12.927647+00:00
     description: null
     asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
@@ -268,13 +268,13 @@ Experiment Identifiers and ASDF properties
 
 The next part starts the core of the ASDF file, where our data is stored. We
 find the unique identifier for our experiment ``uuid``. The tag
-``!qiskit!core/uuid-0.0.0`` is part of ASDF Qiskit, the ASDF library for
-Aardvark. It tells ASDF and YAML libraries that this entry is a :class:`UUID`
-instance. Then we have the date the experiment was created and a description of
-our experiment (which we didn't set).
+``!expres!core/uuid-0.2.0`` is part of Exprés. It tells ASDF and YAML libraries
+that this entry is a :class:`UUID` instance. Then we have the date the
+experiment was created and a description of our experiment (which we didn't
+set).
 
 Entries ``asdf_library``, ``history``, and ``extensions`` are part of ASDF. As
-an end-user of Aardvark, you do not need to deal with these. They track which
+an end-user of Exprés, you do not need to deal with these. They track which
 ASDF extensions were used to create the file and any modifications that may have
 been made.
 
@@ -284,10 +284,10 @@ Artifacts
 
 .. code-block:: yaml
 
-    artifacts: !aardvark!core/artifacts-0.0.0
+    artifacts: !expres!core/artifacts-0.2.0
         fig1.pdf: {source: fig1.pdf}
 
-Aardvark tracks artifacts in two ways, distinguishing between artifacts bound to
+Exprés tracks artifacts in two ways, distinguishing between artifacts bound to
 a dataclass attribute and those that are associated with the experiment, called
 floating artifacts. Floating artifacts are tracked in the ``artifacts`` entry of
 the ASDF file, and their information is accessible in
@@ -303,7 +303,7 @@ This results in the following in our ASDF file.
 
 .. code-block:: yaml
 
-    artifacts: !aardvark!core/artifacts-0.0.0
+    artifacts: !expres!core/artifacts-0.2.0
         figure1: {description: A very nice figure., source: fig1.pdf}
 
 Dataclass attributes
@@ -316,7 +316,7 @@ Dataclass attributes
         datatype: float64
         shape: [100]
         source: 0
-    metrics: !aardvark!core/artifact-0.0.0 {format: npz, source: metrics_over_time.npz}
+    metrics: !expres!core/artifact-0.2.0 {format: npz, source: metrics_over_time.npz}
     params: [0.5, 0.5]
     t_steps: [0.0, 0.1111111111111111, 0.2222222222222222, 0.3333333333333333, 0.4444444444444444,
       0.5555555555555556, 0.6666666666666666, 0.7777777777777777, 0.8888888888888888,
@@ -352,5 +352,5 @@ such as ``energies`` from earlier. The source for ``energies`` was the integer
 the ``energies`` Numpy array.
 
 .. [1] See :doc:`currently supported data types <supported_types>` for details on
-    which types can be saved with Aardvark. Also note :doc:`which cannot be saved
+    which types can be saved with Exprés. Also note :doc:`which cannot be saved
     <unsupported_types>`.

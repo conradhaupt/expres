@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -22,10 +22,10 @@ from uuid import UUID
 import asdf
 import ddt
 import pytest
-from aardvark.storage import FolderProvider
-from aardvark.utils.tests import TestCase
+from expres.storage import FolderProvider
+from expres.utils.tests import TestCase
 
-from aardvark import Experiment, dataclass, field
+from expres import Experiment, dataclass, field
 
 DUMMY_UUID = UUID(hex="83cff1b092b24f548befbbdf08fd416c")
 DUMMY_DATETIME = datetime.now(tz=timezone.utc)
@@ -48,7 +48,7 @@ def get_experiment() -> MockExperiment:
 
 
 def get_experiment_and_root_dir() -> tuple[MockExperiment, str]:
-    root_dir = Temp.mkdtemp(prefix="aardvark_tests_")
+    root_dir = Temp.mkdtemp(prefix="expres_tests_")
     provider = FolderProvider()
     _instance = get_experiment()
     _instance._context = provider.new_context()

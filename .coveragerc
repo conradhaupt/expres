@@ -4,5 +4,5 @@ omit =
     ; Ignore tools that are python scripts
     ./tools/*
     ; We don't test our tests.
-    ./aardvark/tests/**/*
+    ./expres/tests/**/*
 command_line = -m pytest

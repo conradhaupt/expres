@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -22,20 +22,20 @@ from tempfile import mkdtemp
 from uuid import UUID
 
 import ddt
-from aardvark.artifacts.artifact import ArtifactInfo
-from aardvark.artifacts.artifact_collection import ArtifactCollection
-from aardvark.config import get_config
-from aardvark.storage.base_provider import BaseContext, ContextState
-from aardvark.storage.folder_provider import (
+from expres.artifacts.artifact import ArtifactInfo
+from expres.artifacts.artifact_collection import ArtifactCollection
+from expres.config import get_config
+from expres.storage.base_provider import BaseContext, ContextState
+from expres.storage.folder_provider import (
     FolderContext,
     FolderProvider,
     format_path,
     target_path_for,
     transformed_description,
 )
-from aardvark.utils.tests import TestCase
+from expres.utils.tests import TestCase
 
-from aardvark import Experiment, dataclass, temp_config
+from expres import Experiment, dataclass, temp_config
 
 DUMMY_UUID = UUID(hex="83cff1b092b24f548befbbdf08fd416c")
 DUMMY_DATETIME = datetime.now(tz=tz.utc)
@@ -107,7 +107,7 @@ class TestFolderContext(TestCase):
     def test_new_unsaved_context(self):
         """Test the default new context for FolderProvider."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         with temp_config() as _config:
             _config["storage_providers"]["folder_storage_provider"]["temp_dir"] = (
@@ -136,7 +136,7 @@ class TestFolderContext(TestCase):
     def test_saved_experiment_context(self):
         """Test that an experiment is saved correctly using its builtin context."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         provider = FolderProvider()
         _context = provider.new_context()
@@ -195,7 +195,7 @@ class TestFolderContext(TestCase):
     def test_saved_asdffile_context(self):
         """Test that an asdffile is saved correctly using its builtin context."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         provider = FolderProvider()
         _context = provider.new_context()
@@ -268,7 +268,7 @@ class TestFolderContext(TestCase):
     def test_saved_context(self):
         """Test that an experiment is saved correctly using a separate context."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         provider = FolderProvider()
         context: FolderContext = provider.new_context()
@@ -336,7 +336,7 @@ class TestFolderContext(TestCase):
     def test_save_twice_experiment(self):
         """Test that an experiment is saved correctly twice, from the same instance."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         provider = FolderProvider()
         _context = provider.new_context()
@@ -406,7 +406,7 @@ class TestFolderContext(TestCase):
     def test_save_twice_asdffile(self):
         """Test that an asdffile is saved correctly twice using its builtin context."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         provider = FolderProvider()
         _context = provider.new_context()
@@ -490,7 +490,7 @@ class TestFolderContext(TestCase):
     def test_artifact_save(self):
         """Test that floating artifacts are saved correctly."""
         expected_root_dir, user_root_dir = self.mkdtemp_root_dir_with_home(
-            prefix="aardvark_test"
+            prefix="expres_test"
         )
         provider = FolderProvider()
         _context = provider.new_context()

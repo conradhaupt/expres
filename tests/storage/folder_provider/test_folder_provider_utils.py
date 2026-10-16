@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -20,23 +20,23 @@ from datetime import timezone as tz
 from pathlib import Path
 from uuid import UUID
 
-from aardvark.storage.folder_provider import (
+from expres.storage.folder_provider import (
     target_path_for,
     transformed_description,
 )
-from aardvark.utils.tests.config_test_case import (
+from expres.utils.tests.config_test_case import (
     MockConfigTestCase,
     patch_multiple_configs,
 )
 
-from aardvark import Experiment, dataclass
+from expres import Experiment, dataclass
 
 DUMMY_GLOBAL_CONFIG_YAML = """# This part of the config file should not be changed by users. When a config
-# file is loaded by aardvark, it should automatically be updated and saved in
+# file is loaded by Exprés, it should automatically be updated and saved in
 # newer versions.
 config_version: 0.1.0
 
-# Aardvark will support multiple ways of saving experiments. The only provider
+# Exprés will support multiple ways of saving experiments. The only provider
 # right now is FolderProvider, which saves experiment instances in their own
 # folder, alongside artifacts.
 storage_providers:
@@ -74,7 +74,7 @@ class MockExperiment(Experiment):
 
 # We patch __must_init_config_context so we always reinitialise the Config
 # ContextVar. This forces the Config to call global_config and local_config_for.
-@mock.patch("aardvark.config.config.__must_init_config_context", new=lambda: True)
+@mock.patch("expres.config.config.__must_init_config_context", new=lambda: True)
 class TestFolderProvider_TargetPathFor(MockConfigTestCase):
     """ "Test :fun:`target_path_for` for :class:`FolderProvider`."""
 
@@ -119,7 +119,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
 
     # TODO:Move these tests to test_folder_storage.py
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
@@ -140,7 +140,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         self.assertEqual(expected_path, actual_path)
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
@@ -175,7 +175,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         self.assertEqual(expected_path, actual_path)
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,
@@ -204,7 +204,7 @@ class TestFolderProvider_TargetPathFor(MockConfigTestCase):
         self.assertEqual(expected_path, actual_path)
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML,
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML,

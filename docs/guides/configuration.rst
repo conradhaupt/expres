@@ -3,9 +3,9 @@
 Configuration
 #############
 
-Aardvark supports config files for changing how experiments are saved to disk.
-This can be done in two ways: through a config file `.aardvark.yml` and a
-:class:`~aardvark.config.Config` object.
+Exprés supports config files for changing how experiments are saved to disk.
+This can be done in two ways: through a config file `.expres.yml` and a
+:class:`~expres.config.Config` object.
 
 Config Structure
 ****************
@@ -21,7 +21,7 @@ Config Structure
             filename_format: "{experiment_name}_{date_created:%Y%m%d_%H%M}{desc}_{uuid_short}.asdf"
             description_max_length: 15
 
-The above is the default configuration for Aardvark. The only entries in the
+The above is the default configuration for Exprés. The only entries in the
 current version are to configure how experiments are saved with the Folder
 Provider. The options are:
 
@@ -43,7 +43,7 @@ Folder and Filename Format Strings
 
 The ``folder_format`` and ``filename_format`` config options define how to name
 an experiment's folder and ASDF file. They are treated as Python f-strings by
-Aardvark. The parameters are as follows:
+Exprés. The parameters are as follows:
 
 * ``experiment_name``: The name of the :class:`Experiment` class defined by the
   user.
@@ -62,10 +62,10 @@ Aardvark. The parameters are as follows:
 Changing the Configuration
 **************************
 
-Config files are loaded by Aardvark when needed. Aardvark supports two locations
-for config files: in ``<user home>/.aardvark.yml`` and ``<current
-directory>/.aardvark.yml``. The current directory config takes precedence over
-the config in the user directory. If neither exists, or if neither defines a
+Config files are loaded by Exprés when needed. Exprés supports two locations for
+config files: in ``<user home>/.expres.yml`` and ``<current
+directory>/.expres.yml``. The current directory config takes precedence over the
+config in the user directory. If neither exists, or if neither defines a
 specific config option, then the default is used. This is like a stack of
 configs where those higher in the stack take precedence over those lower in the
 stack.
@@ -78,7 +78,7 @@ the previous configuration when exited. See below for an example.
 
 .. code-block:: python
 
-    from aardvark import get_config, temp_config
+    from expres import get_config, temp_config
 
     # We set the following config options in config files.
     # root_dir=~/ in the user's config file.

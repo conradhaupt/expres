@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2026 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -19,8 +19,13 @@ from typing import Any
 import numpy as np
 import pytest
 
-from aardvark import Experiment, dataclass
-from pytest_aardvark_fixtures import assert_tree_match, save_fixture
+from pytest_expres_fixtures import assert_tree_match, save_fixture
+
+try:
+    # Legacy module name support
+    from aardvark import Experiment, dataclass
+except ImportError:
+    from expres import Experiment, dataclass
 
 
 @dataclass(kw_only=True)

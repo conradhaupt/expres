@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -16,14 +16,14 @@
 
 import asdf
 import ddt
-from aardvark.artifacts import ArtifactInfo
-from aardvark.artifacts.utils import (
+from expres.artifacts import ArtifactInfo
+from expres.artifacts.utils import (
     artifacts_from_asdf,
     replace_values_with_artifacts,
     restore_values_for_artifacts,
 )
-from aardvark.asdf.tags import ArtifactInfoTag
-from aardvark.utils.tests import TestCase
+from expres.asdf.tags import ArtifactInfoTag
+from expres.utils.tests import TestCase
 
 
 @ddt.ddt

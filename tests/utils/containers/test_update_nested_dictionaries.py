@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -16,8 +16,8 @@
 
 from copy import deepcopy as copy
 
-from aardvark.utils.containers import update_nested_dictionaries
-from aardvark.utils.tests import TestCase
+from expres.utils.containers import update_nested_dictionaries
+from expres.utils.tests import TestCase
 
 
 class TestUpdateNestedDictionaries(TestCase):

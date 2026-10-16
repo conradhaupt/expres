@@ -13,7 +13,7 @@
 
 # pylint: disable=too-many-return-statements
 
-"""Utility script to verify aardvark copyright file headers"""
+"""Utility script to verify Exprés copyright file headers"""
 
 import argparse
 import multiprocessing
@@ -24,7 +24,7 @@ import re
 
 # regex for character encoding from PEP 263
 pep263 = re.compile(r"^[ \t\f]*#.*?coding[:=][ \t]*([-_.a-zA-Z0-9]+)")
-line_start = re.compile(r"^(\/\/|#) This code is part of Aardvark\.$")
+line_start = re.compile(r"^(\/\/|#) This code is part of Exprés\.$")
 copyright_line = re.compile(
     r"^(\/\/|#) Copyright [\d-]+ Conrad Haupt <conrad@conradhaupt.com> and IBM\.$"
 )
@@ -62,7 +62,7 @@ def discover_files(code_paths):
 
 def validate_header(file_path):
     """Validate the header for a single file"""
-    header = """# This code is part of Aardvark.
+    header = """# This code is part of Exprés.
 #
 """
     apache_text = """#
@@ -78,7 +78,7 @@ def validate_header(file_path):
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
-    header_slashes = """// This code is part of Aardvark.
+    header_slashes = """// This code is part of Exprés.
 //
 """
     apache_text_slashes = """//

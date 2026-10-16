@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -23,11 +23,11 @@ from uuid import UUID
 
 import ddt
 import matplotlib.pyplot as plt
-from aardvark.config.config import temp_config
-from aardvark.storage import FolderContext, FolderProvider
-from aardvark.utils.tests import TestCase
+from expres.config.config import temp_config
+from expres.storage import FolderContext, FolderProvider
+from expres.utils.tests import TestCase
 
-from aardvark import Experiment, dataclass
+from expres import Experiment, dataclass
 
 DUMMY_UUID = UUID(hex="83cff1b092b24f548befbbdf08fd416c")
 DUMMY_DATETIME = datetime.now(tz=timezone.utc)
@@ -50,7 +50,7 @@ def get_experiment() -> MockExperiment:
 
 
 def get_experiment_and_root_dir() -> tuple[MockExperiment, str]:
-    root_dir = Temp.mkdtemp(prefix="aardvark_tests_")
+    root_dir = Temp.mkdtemp(prefix="expres_tests_")
     provider = FolderProvider()
     _instance = get_experiment()
     _instance._context = provider.new_context()
@@ -223,7 +223,7 @@ class TestExperimentSaveLoadArtifacts(TestCase):
         self, config_msg: str, expected_format: str, open_kwargs
     ):
         """Test that saving a figure to an existing artifact, with different savefig arguments, works."""
-        import aardvark.storage.base_provider as prov
+        import expres.storage.base_provider as prov
 
         captured_formats = []
         original_source_to_figure_format = prov.source_to_figure_format
@@ -234,7 +234,7 @@ class TestExperimentSaveLoadArtifacts(TestCase):
             return _val
 
         with mock.patch(
-            "aardvark.storage.base_provider.source_to_figure_format", wrapper
+            "expres.storage.base_provider.source_to_figure_format", wrapper
         ) as _patch:
             exp, root_dir = get_experiment_and_root_dir()
             fig = plt.figure()
