@@ -1,6 +1,6 @@
 # This code is part of Exprés.
 #
-# Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
+# Copyright 2024-2026 Conrad Haupt, Marc Drudis, and IBM.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +18,4 @@ from expres.config import get_config, temp_config
 from expres.dataclasses import artifact, dataclass, field
 from expres.experiment import Experiment
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"

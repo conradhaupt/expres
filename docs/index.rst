@@ -15,24 +15,20 @@ Exprés
    that data saved with this version will be loadable in future versions.
 
 Exprés provides serialisation support and experiment data management for
-research use-cases. Through the associated ``asdf-qiskit`` library, important
-Qiskit classes are saved into :mod:`asdf` files. This allows developers and
-researchers to save experimental data in a format that is both human readable
-and well supported. The most important feature of Exprés is the handling of
-artifacts (or aard-ifacts), which are files separate from the serialised data
-that are still associated with the experiment.
+research use-cases. `ASDF <https://www.asdf-format.org/en/latest/>` provides
+support for saving important Python classes and datastructures into mostly
+human-readable YAML. This allows developers and researchers to save experimental
+data in a format that is both easy to understand and well supported by analysis
+tools and experimentation software. The most important feature of Exprés is the
+handling of artifacts, which are files separate from the serialised data that
+are still associated with the experiment.
 
-`ASDF <https://www.asdf-format.org/en/latest/>`_ is a derivative of YAML that
-supports multidimensional arrays and memory-mapped data support for simpler
-data management. With Exprés you can save Qiskit classes and experimental
-results with ASDF without needing to worry about backwards compatibility [1]_,
-like with pickle. ASDF and YAML was chosen given their human readability and
-support for Python and NumPy datatypes.
-
-Exprés actually consists of two libraries: ``asdf_qiskit`` which is an
-`ASDF <https://www.asdf-format.org/en/latest/>`_ plugin to support Qiskit
-class serialisation, and ``expres`` which provides the :class:`~expres.Experiment`
-interface and artifact support.
+`ASDF <https://www.asdf-format.org/en/latest/>`_ is a superset of YAML that
+supports multidimensional arrays and memory-mapped data support for simpler data
+management. With Exprés you can save experimental results with ASDF without
+needing to worry about backwards compatibility issues [1]_, like with pickle.
+ASDF and YAML were chosen given their human readability and support for Python
+and NumPy datatypes.
 
 This documentation is divided into a few sections, depending on your
 understanding of Python, ASDF, and serialisation.
@@ -49,8 +45,7 @@ understanding of Python, ASDF, and serialisation.
       :link: guides/supported_types
       :link-type: doc
 
-      Breakdown of which classes in Qiskit and Python are serialised by
-      ``asdf-qiskit``.
+      Breakdown of which classes in are serialised by Exprés.
 
 .. grid:: 2
 
@@ -58,25 +53,23 @@ understanding of Python, ASDF, and serialisation.
       :link: dev_guide/index
       :link-type: doc
 
-      Information on how ``expres`` and ``asdf_qiskit`` are architected and
-      how to contribute to the code-base.
+      Information on how Exprés is architected and how to contribute to the
+      code-base.
 
 
    .. grid-item-card:: API Docs
       :link: apidocs/index
       :link-type: doc
 
-      Detailed information about the implementation of ``expres`` and
-      ``asdf_qiskit``.
+      Detailed information about the implementation of Exprés.
 
 
 
-.. [1] At least, this is the goal with Exprés. Though data may not be
-    serialisable into the same classes in Qiskit if, for example, the class is
-    deprecated and removed. But the intention is to (i) support existing
-    classes in the latest supported versions of Qiskit, (ii) have clearly
-    defined schemas for how quantum computing data is represented in ASDF/YAML,
-    and (iii) common sense ways to load saved data in new versions of Qiskit.
+.. [1] At least, this is the goal with Exprés. The intention is to (i) support
+    existing data and experiments in the latest supported versions of ASDF and
+    Python, (ii) have clearly defined schemas for how experiments are
+    represented in ASDF/YAML, and (iii) common sense ways to load saved data in
+    new versions of Exprés.
 
 Index
 =====

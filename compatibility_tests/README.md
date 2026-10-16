@@ -22,13 +22,13 @@ README.md.**
 ## Writing Compatibility Tests
 
 All compatibility tests are run with pytest and not UnitTest. This means tests
-must not use `from asdf_qiskit.tests import TestCase` as fixtures are not
+must not use `from expres.utils.tests import TestCase` as fixtures are not
 properly handled with UnitTest. A typical compatibility test has two parts: a
 fixture to be saved and a testing function that compares two instances of the
 fixture returned type. The function is the test whereas the fixture must be
 adapted to handle different dependency versions. The fixtures are assumed to be
 Experiment instances, where the entries/fields are being tested. For example,
-say we have an Experiment with simple ``xdata`` and ``ydata``.
+say we have an Experiment with simple `xdata` and `ydata`.
 
 ```python
 from expres import Experiment, dataclass

@@ -1,6 +1,6 @@
 # This code is part of Exprés.
 #
-# Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
+# Copyright 2024-2026 Conrad Haupt, Marc Drudis, and IBM.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 # limitations under the License.
 
 
-from asdf_qiskit.tests import TestCase
-from asdf_qiskit.tests.utils import roundtrip_object
+from expres.utils.tests import TestCase
+from expres.utils.tests.helpers import roundtrip_object
 from uuid import UUID, uuid1, uuid3, uuid4, uuid5
 
 

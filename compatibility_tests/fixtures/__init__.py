@@ -1,6 +1,6 @@
 # This code is part of Exprés.
 #
-# Copyright 2024-2026 Conrad Haupt <conrad@conradhaupt.com> and IBM.
+# Copyright 2024-2026 Conrad Haupt, Marc Drudis, and IBM.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

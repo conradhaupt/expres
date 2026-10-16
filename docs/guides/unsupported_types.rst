@@ -3,10 +3,10 @@
 Unsupported Types
 #################
 
-Some types in Python, Qiskit, and other quantum computing libraries are not
-supported by ``asdf-qiskit``. This document lists some important ones, reasons
-for not supporting them in ``asdf-qiskit``, and in some cases, recommended ways
-for storing them in supported data structures.
+Some types in Python, Qiskit, and other python libraries are not supported by
+Exprés or ASDF. This document lists some important ones and the reasons we have
+not implemented support. In some cases, workarounds are given for how best to
+store these types.
 
 
 Python
@@ -35,23 +35,3 @@ are two recommended ways around this:
    :mod:`uncertainties` supports creating :class:`~uncertainties.UFloat`
    instances from covariance matrices: see
    :func:`~uncertainties.correlated_values`.
-
-Qiskit
-******
-
-Backends
-========
-
-Backends in Qiskit and ``qiskit-ibm-runtime`` are complicated, and much of their
-definitions in Python manage API calls to IBM servers. Additionally, any
-implementation would be specific to IBM hardware, ignoring alternative
-providers. In the end, researchers and developers typically want to store two
-types of information relating to backends:
-
-1. References to the exact backend used for an experiment.
-2. Properties of the backend.
-
-For the former, saving the backend name should be sufficient. This also allows
-for easy reloading of the same backend correctly, with something akin to
-``service.backend(tree["backend"])``. For saving properties, it is recommended
-that users store properties as dictionaries of property values.

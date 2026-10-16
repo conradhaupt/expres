@@ -1,6 +1,6 @@
 # This code is part of Exprés.
 #
-# Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
+# Copyright 2024-2026 Conrad Haupt, Marc Drudis, and IBM.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -79,5 +79,5 @@ class TestExperimentASDF(TestCase):
         _file = BytesIO()
         exp._tree.write_to(_file)
         _asdf_str = str(_file.getvalue())
-        self.assertIn("uuid: !qiskit!core/uuid", _asdf_str)
+        self.assertIn("uuid: !expres!core/uuid", _asdf_str)
         self.assertTrue("date_created: {}".format(str(DUMMY_DATETIME)) in _asdf_str)

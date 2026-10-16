@@ -2,9 +2,9 @@
  Converters
 ############
 
-.. _asdf_qiskit-converters:
+.. _expres-converters:
 
-.. automodule:: asdf_qiskit.converters
+.. automodule:: expres.converters
    :no-members:
    :no-inherited-members:
    :no-special-members:

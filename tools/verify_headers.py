@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # This code was part of Qiskit.
 #
-# (C) Copyright IBM 2020-2025, Conrad Haupt 2025
+# (C) Copyright IBM 2020-2025, Conrad Haupt 2025-2026
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE.txt file in the root directory
@@ -26,7 +26,7 @@ import re
 pep263 = re.compile(r"^[ \t\f]*#.*?coding[:=][ \t]*([-_.a-zA-Z0-9]+)")
 line_start = re.compile(r"^(\/\/|#) This code is part of Exprés\.$")
 copyright_line = re.compile(
-    r"^(\/\/|#) Copyright [\d-]+ Conrad Haupt <conrad@conradhaupt.com> and IBM\.$"
+    r"^(\/\/|#) Copyright [\d-]+ Conrad Haupt, Marc Drudis, and IBM\.$"
 )
 
 IGNORE_DIRS = [

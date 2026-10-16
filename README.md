@@ -1,8 +1,3 @@
-> [!IMPORTANT]
-> This code was originally in a mono-repo with `asdf-qiskit`, but has been
-> separated into a new repo. There may still be some mentions of `asdf-qiskit`
-> in the docs and code during the renaming/refactor.
-
 > [!CAUTION]
 > Exprés is still a WIP and volatile. The library is primarily for personal use
 > in our PhD research at IBM Research, Zürich, though anyone is welcome to use
@@ -15,17 +10,32 @@ Exprés, the Catalan word for express, integrates Python dataclasses and
 [ASDF](https://asdf.readthedocs.io/en/latest/), so that researchers can easily
 save and load experimental data with [Qiskit](https://qiskit.org/) and other
 scientific computing libraries in Python. Qiskit support is provided by [ASDF
-Qiskit](https://github.com/conradhaupt/asdf-qiskit/)
+Qiskit](https://github.com/conradhaupt/asdf-qiskit/), with full integration into
+Exprés.
 
 ## Installation
 
-Exprés is still under active development and will be published to PyPI in the
-near future. You can install it from source, but note that `main` is under
-active development. For release versions, see the latest `release/` branch or
-use the `pip install` command below:
+Exprés is still under active development, but releases are published to PyPI.
+You can install with your favourite Python package manager.
 
 ```bash
-pip install "git+ssh://git@github.com/conradhaupt/expres.git@release/0.1"
+pip install expres
+# or
+uv add expres
+```
+
+To install from source, clone the GitHub repo and install with the same package
+manager.
+
+```bash
+git clone git@github.com:conradhaupt/expres.git
+cd expres
+
+# With pip
+pip install .
+
+# With uv
+uv add "expres @ ./"
 ```
 
 ## Dependencies

@@ -1,6 +1,6 @@
 # This code is part of Exprés.
 #
-# Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
+# Copyright 2024-2026 Conrad Haupt, Marc Drudis, and IBM.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 
 project = "Exprés"
-copyright = "2026, Conrad Haupt and Marc Sanz Drudis"
-author = "Conrad Haupt and Marc Sanz Drudis"
+copyright = "2026, Conrad Haupt and Marc Drudis"
+author = "Conrad Haupt and Marc Drudis"
 
 # The full version, including alpha/beta/rc tags
-release = "0.2.0"
+release = "0.2.1"
 
 
 # -- General configuration ---------------------------------------------------
