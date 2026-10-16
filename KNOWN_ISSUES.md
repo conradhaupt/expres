@@ -1,6 +1,6 @@
-# Known Issues with Aardvark
+# Known Issues with Exprés
 
-## Aardvark
+## Exprés
 
 1. `field(default=..., init=False)` attributes are not saved to the ASDF file on
    instantiation.
@@ -42,7 +42,7 @@
     ```
 
    In this scenario we have two artifacts with the name `z_vals`. **It is
-   unclear if this is something Aardvark should support.**
+   unclear if this is something Exprés should support.**
 
 3. Experiment does not handle closing ASDF files. `Experiment` currently loads
    an ASDF file and calls `AsdfFile.write_to`, but never `AsdfFile.close()`.
@@ -69,7 +69,7 @@
     pointing to the same ASDF file. During garbage collection, which PyTest
     calls multiple times during test cleanup, warnings are raised that the files
     were never closed. `AsdfFile.close()` would solve this, but the workflow
-    with `Aardvark` is not clear. For example, should `Experiment.close()`
+    with `Exprés` is not clear. For example, should `Experiment.close()`
     disable `__setattr__` and `__getattribute__`? `AsdfFile.close()` will clear
     the tree, resulting in an empty AsdfFile after closing. This isn't possible
     with `Experiment` as we have defined attributes which do not have an "empty"

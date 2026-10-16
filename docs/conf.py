@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -34,9 +34,9 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = "Aardvark"
-copyright = "2025, Conrad Haupt"
-author = "Conrad Haupt"
+project = "Exprés"
+copyright = "2026, Conrad Haupt and Marc Sanz Drudis"
+author = "Conrad Haupt and Marc Sanz Drudis"
 
 # The full version, including alpha/beta/rc tags
 release = "0.1.4"

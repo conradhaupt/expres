@@ -4,11 +4,11 @@ Guides
 ######
 
 After going through the following guides, you should understand how to use
-Aardvark as an end user. Note that sometimes there are multiple ways of doing
-something, and Aardvark provides one of them. This does not mean you have to do
+Exprés as an end user. Note that sometimes there are multiple ways of doing
+something, and Exprés provides one of them. This does not mean you have to do
 it that way. For example, saving figures: figures can be saved with
-:meth:`~aardvark.Experiment.savefig` or with
-:meth:`~aardvark.Experiment.open_artifact`, or even separately.
+:meth:`~expres.Experiment.savefig` or with
+:meth:`~expres.Experiment.open_artifact`, or even separately.
 
 .. toctree::
    :maxdepth: 2

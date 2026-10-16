@@ -3,7 +3,7 @@
 Getting Started
 ###############
 
-Experiments with Aardvark are defined in a dataclass. Fields of the dataclass
+Experiments with Exprés are defined in a dataclass. Fields of the dataclass
 define attributes of an experiment that will be saved to an ASDF file. All
 supported classes and data types will be saved to the file, and are loadable
 later. Some attributes can be marked as artifacts, these are called bound
@@ -16,11 +16,11 @@ Defining an experiment
 **********************
 
 A typical experiment starts by defining the data we want to record. An
-experiment is a dataclass that inherits from :class:`aardvark.Experiment`.
+experiment is a dataclass that inherits from :class:`expres.Experiment`.
 
 .. code-block:: python
 
-   from aardvark import Experiment, dataclass, field, artifact
+   from expres import Experiment, dataclass, field, artifact
    import numpy as np
    import numpy.typing as npt
 
@@ -37,18 +37,18 @@ Here we have defined an experiment called ``Simulation``. It has four
 attributes: ``x_in``, ``params``, ``results``, ``img``. As with
 :func:`~dataclasses.dataclass`, each has a declared type. Because ``results``
 and ``img`` are `optional`, in that they can also be None, we set their defaults
-to ``None`` with :func:`~aardvark.dataclasses.field` and
-:func:`~aardvark.dataclasses.artifact`, respectively. ``results`` will be
+to ``None`` with :func:`~expres.dataclasses.field` and
+:func:`~expres.dataclasses.artifact`, respectively. ``results`` will be
 ``None`` on object creation, but can be set later. The same is true for ``img``,
 except that it will be saved as an artifact, a separate file, instead of in the
-ASDF file. We need to tell Aardvark how to save this artifact, so we set the
+ASDF file. We need to tell Exprés how to save this artifact, so we set the
 format to ``"npz"``, which will use :func:`~numpy.savez_compressed` to save the
 data, if it is not ``None``.
 
 Saving an experiment
 ********************
 
-We can save an experiment by calling :meth:`~aardvark.Experiment.save` on our object.
+We can save an experiment by calling :meth:`~expres.Experiment.save` on our object.
 
 .. code-block:: python
 
@@ -64,12 +64,12 @@ We can save an experiment by calling :meth:`~aardvark.Experiment.save` on our ob
 
 When our experiment is saved, our experiment attributes are saved to an ASDF
 file and our artifacts are saved to files in the same folder. The specific
-folder is determined by Aardvark.
+folder is determined by Exprés.
 
 Saved folder structure
 ======================
 
-By default, Aardvark saves experiments into subfolders of the current directory.
+By default, Exprés saves experiments into subfolders of the current directory.
 There is one subfolder per experiment instance, named after the experiment class
 and the experiment's metadata. The ASDF file and artifacts are saved within the
 subfolder. The following is an example directory tree for a script
