@@ -3,7 +3,7 @@
   requires      = ["uv_build>=0.10.3,<0.11.0"]
 
 [tool.uv.build-backend]
-  module-name = "aardvark"
+  module-name = "expres"
   module-root = ""
 
 [project]
@@ -36,7 +36,7 @@
   description = "Manage experiments and associated \"aard\"ifacts easily, and without having to worry about Pickle."
   license = {file = "LICENSE.txt"}
   maintainers = [{email = "conrad@conradhaupt.com", name = "Conrad Haupt"}]
-  name = "aardvark"
+  name = "expres"
   readme = "README.md"
   requires-python = ">=3.10"
   version = "0.1.4"
@@ -59,18 +59,18 @@
   tests = ["ddt==1.7.2", "pytest", "pytest-asdf-plugin", "pytest-benchmark~=5.1", "pytest-cov", "ruff"]
 
 [project.urls]
-  Documentation = "https://github.com/conradhaupt/aardvark#readme"
-  Issues        = "https://github.com/conradhaupt/aardvark/issues"
-  Source        = "https://github.com/conradhaupt/aardvark/tree/main/aardvark"
+  Documentation = "https://github.com/conradhaupt/expres#readme"
+  Issues        = "https://github.com/conradhaupt/expres/issues"
+  Source        = "https://github.com/conradhaupt/expres/tree/main/expres"
 
 [project.entry-points]
-  "asdf.extensions"        = {aardvark = 'aardvark.asdf.extension:get_extensions'}
-  "asdf.resource_mappings" = {aardvark = 'aardvark.resources:get_resource_mappings'}
+  "asdf.extensions"        = {expres = 'expres.asdf.extension:get_extensions'}
+  "asdf.resource_mappings" = {expres = 'expres.resources:get_resource_mappings'}
 
 
 [tool.pytest.ini_options]
   addopts                   = "-W error"
-  asdf_schema_root          = 'aardvark/resources/schemas/'
+  asdf_schema_root          = 'expres/resources/schemas/'
   asdf_schema_tests_enabled = 'true'
 
 [tool.pyright]

@@ -1,0 +1,32 @@
+%YAML 1.1
+---
+id: asdf://expres.org/asdf/manifests/expres-0.2.0
+extension_uri: asdf://expres.org/asdf/extensions/expres-0.2.0
+title: ASDF Extension for Exprés
+description: Extension for handling Exprés experiments with ASDF.
+asdf_standard_requirement:
+  gte: 1.6.0
+tags:
+  # Override base schema to move uuid and date_created to the top of asdf files.
+  - tag_uri: tag:stsci.edu:asdf/core/asdf-1.1.0
+    schema_uri: asdf://expres.org/asdf/schemas/experiment-0.2.0
+  - tag_uri: asdf://expres.org/asdf/tags/core/artifacts-0.2.0
+    schema_uri: asdf://expres.org/asdf/schemas/core/artifacts-0.2.0
+  - tag_uri: asdf://expres.org/asdf/tags/core/artifact-0.2.0
+    schema_uri: asdf://expres.org/asdf/schemas/core/artifact-0.2.0
+  - tag_uri: asdf://expres.org/asdf/tags/core/uuid-0.2.0
+    schema_uri: asdf://expres.org/asdf/schemas/core/uuid-0.2.0
+  # Legacy schema from ASDF Qiskit
+  - tag_uri: asdf://qiskit.org/asdf/tags/core/uuid-0.0.0
+    schema_uri: asdf://qiskit.org/asdf/schemas/core/uuid-0.0.0
+  # Aardvark 0.1
+  - tag_uri: asdf://aardvark.org/asdf/tags/core/artifacts-0.0.0
+    schema_uri: asdf://aardvark.org/asdf/schemas/core/artifacts-0.0.0
+  - tag_uri: asdf://aardvark.org/asdf/tags/core/artifact-0.0.0
+    schema_uri: asdf://aardvark.org/asdf/schemas/core/artifact-0.0.0
+  - tag_uri: asdf://aardvark.org/asdf/tags/core/uuid-0.0.0
+    schema_uri: asdf://aardvark.org/asdf/schemas/core/uuid-0.0.0
+yaml_tag_handles:
+  "!expres!": asdf://expres.org/asdf/tags
+  "!aardvark!": asdf://aardvark.org/asdf/tags
+  "!qiskit!": asdf://qiskit.org/asdf/tags
