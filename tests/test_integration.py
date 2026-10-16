@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -21,8 +21,8 @@ from pathlib import Path
 import numpy as np
 import numpy.typing as npt
 import yaml
-from aardvark.storage.base_provider import ContextState
-from aardvark.utils.tests import TestCase
+from expres.storage.base_provider import ContextState
+from expres.utils.tests import TestCase
 
 
 # Create a Loader for unknown YAML types so we don't need to worry about ASDF
@@ -50,7 +50,7 @@ DummyLoader.add_constructor(None, unknown)
 
 class TestIntegration(TestCase):
     def test_save_load_simple_class(self):
-        from aardvark import Experiment, dataclass, field, temp_config
+        from expres import Experiment, dataclass, field, temp_config
 
         @dataclass
         class MyExp(Experiment):
@@ -99,7 +99,7 @@ class TestIntegration(TestCase):
             )
 
     def test_load_and_save_experiment(self):
-        from aardvark import Experiment, dataclass, field, temp_config
+        from expres import Experiment, dataclass, field, temp_config
 
         @dataclass
         class MyExp(Experiment):
@@ -158,7 +158,7 @@ class TestIntegration(TestCase):
         new_inst._tree.close()
 
     def test_save_numpy_class(self):
-        from aardvark import Experiment, dataclass, field, temp_config
+        from expres import Experiment, dataclass, field, temp_config
 
         @dataclass
         class MyExp(Experiment):
@@ -229,7 +229,7 @@ class TestIntegration(TestCase):
         )
 
     def test_save_floating_artifact(self):
-        from aardvark import Experiment, dataclass, field, temp_config
+        from expres import Experiment, dataclass, field, temp_config
 
         @dataclass
         class MyExp(Experiment):
@@ -290,7 +290,7 @@ class TestIntegration(TestCase):
             )
 
     def test_save_bound_artifact(self):
-        from aardvark import Experiment, artifact, dataclass, field, temp_config
+        from expres import Experiment, artifact, dataclass, field, temp_config
 
         @dataclass
         class MyExp(Experiment):
@@ -331,7 +331,7 @@ class TestIntegration(TestCase):
         )
 
     def test_save_floating_and_bound_artifacts(self):
-        from aardvark import Experiment, artifact, dataclass, field, temp_config
+        from expres import Experiment, artifact, dataclass, field, temp_config
 
         @dataclass
         class MyExp(Experiment):

@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -25,9 +25,9 @@ import asdf
 import ddt
 import numpy as np
 
-from aardvark.artifacts import ArtifactCollection, ArtifactInfo
-from aardvark.utils.tests import TestCase
-from aardvark.utils.tests import roundtrip_object
+from expres.artifacts import ArtifactCollection, ArtifactInfo
+from expres.utils.tests import TestCase
+from expres.utils.tests import roundtrip_object
 
 
 @ddt.ddt
@@ -113,7 +113,7 @@ class TestArtifactsConverter(TestCase):
         ]
     )
     def test_roundtrip_with_windows_path(self, num_artifacts: int):
-        with mock.patch("aardvark.artifacts.artifact.InternalPath", PurePosixPath):
+        with mock.patch("expres.artifacts.artifact.InternalPath", PurePosixPath):
             input_posix_arts = self.generated_artifacts(
                 num_artifacts=num_artifacts, source_type="posix"
             )
@@ -127,7 +127,7 @@ class TestArtifactsConverter(TestCase):
 
         buff.seek(0)
         # Mock the InternalPath class to emulate being on Windows
-        with mock.patch("aardvark.artifacts.artifact.InternalPath", PureWindowsPath):
+        with mock.patch("expres.artifacts.artifact.InternalPath", PureWindowsPath):
             with asdf.open(buff, lazy_load=False, memmap=False) as af:
                 output_windows_arts = af["obj"]
 

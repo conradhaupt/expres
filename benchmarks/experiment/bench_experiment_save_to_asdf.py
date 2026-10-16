@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -20,15 +20,15 @@ from datetime import datetime_CAPI
 from io import BytesIO
 from typing import Any
 
-import aardvark
-from aardvark.utils.tests import TestCase
+import expres
+from expres.utils.tests import TestCase
 import asdf
 import pytest
 from pytest_benchmark.session import BenchmarkSession
 
 
-@aardvark.dataclass
-class MockExperiment(aardvark.Experiment):
+@expres.dataclass
+class MockExperiment(expres.Experiment):
     tree1: int
     tree2: float
     tree3: tuple[int, ...]
@@ -41,7 +41,7 @@ class MockExperiment(aardvark.Experiment):
         return 0
 
 
-@aardvark.dataclass
+@expres.dataclass
 class MockDataclass:
     tree1: int
     tree2: float

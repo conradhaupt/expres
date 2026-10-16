@@ -1,18 +1,18 @@
 # Compatibility Tests
 
 Compatibility tests verify that data serialised with specific versions of
-Aardvark are readable by other versions. Additionally, it validates this across
+Exprés are readable by other versions. Additionally, it validates this across
 dependencies and platforms. Environments are setup with Tox and serialisation of
-values is managed by the pytest plugin `pytest-aardvark-fixtures`. One can
+values is managed by the pytest plugin `pytest-expres-fixtures`. One can
 validate serialisation on their own platform with the following command:
 
 ```bash
-pytest -p pytest_aardvark_fixtures --aardvark-fixtures-save --aardvark-fixtures-overwrite compatibility_tests
-pytest -p pytest_aardvark_fixtures --aardvark-fixtures-load compatibility_tests
+pytest -p pytest_expres_fixtures --expres-fixtures-save --expres-fixtures-overwrite compatibility_tests
+pytest -p pytest_expres_fixtures --expres-fixtures-load compatibility_tests
 ```
 
 The first line will save all fixtures annotated with `@save_fixture` to
-`.pytest_aardvark_fixtures`. The files are saved in `.pytest_aardvark_fixtures` on a
+`.pytest_expres_fixtures`. The files are saved in `.pytest_expres_fixtures` on a
 normal run. With Tox, subfolders are used to differentiate the different testing
 environments.
 
@@ -31,9 +31,9 @@ Experiment instances, where the entries/fields are being tested. For example,
 say we have an Experiment with simple ``xdata`` and ``ydata``.
 
 ```python
-from aardvark import Experiment, dataclass
+from expres import Experiment, dataclass
 import pytest   # For declaring fixtures
-from pytest_aardvark_fixtures import save_fixture # For marking fixtures to be saved
+from pytest_expres_fixtures import save_fixture # For marking fixtures to be saved
 ```
 
 The fixture definition may depend on which set of dependencies we're running

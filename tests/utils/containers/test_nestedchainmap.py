@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from aardvark.utils.containers import NestedChainMap
-from aardvark.utils.tests import TestCase
+from expres.utils.containers import NestedChainMap
+from expres.utils.tests import TestCase
 
 
 class TestNestedChainMap_CompleteSubtrees(TestCase):

@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -20,10 +20,10 @@ from pathlib import Path
 
 # Import the config module so mocking works, instead of importing functions from
 # the module.
-import aardvark.config.config as config
+import expres.config.config as config
 import yaml
-from aardvark.utils.containers import NestedChainMap
-from aardvark.utils.tests.config_test_case import (
+from expres.utils.containers import NestedChainMap
+from expres.utils.tests.config_test_case import (
     MockConfigTestCase,
     patch_multiple_configs,
 )
@@ -40,11 +40,11 @@ def DUMMY_GLOBAL_CONFIG_YAML(dir: str) -> str:
     """
     return (
         """# This part of the config file should not be changed by users. When a config
-# file is loaded by aardvark, it should automatically be updated and saved in
+# file is loaded by expres, it should automatically be updated and saved in
 # newer versions.
 config_version: 0.1.0
 
-# Aardvark will support multiple ways of saving experiments. The only provider
+# Exprés will support multiple ways of saving experiments. The only provider
 # right now is FolderProvider, which saves experiment instances in their own
 # folder, alongside artifacts.
 storage_providers:
@@ -91,7 +91,7 @@ class TestConfigLoading(MockConfigTestCase):
     """Test loading of global and local configs, with mocked YAML files."""
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML("test_global_config")
         ),
@@ -109,7 +109,7 @@ class TestConfigLoading(MockConfigTestCase):
         )
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML(prefix="test_local_config")
         ),
@@ -123,7 +123,7 @@ class TestConfigLoading(MockConfigTestCase):
         self.assertEqual(_expected, _local)
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML("test_local_override"),
             local_config_yaml=DUMMY_LOCAL_CONFIG_YAML("test_local_override"),
@@ -147,7 +147,7 @@ class TestConfigLoading(MockConfigTestCase):
         self.assertEquivalentNestedChainMap(_config, _expected)
 
     @mock.patch.multiple(
-        "aardvark.config.config",
+        "expres.config.config",
         **patch_multiple_configs(
             global_config_yaml=DUMMY_GLOBAL_CONFIG_YAML(
                 "test_different_local_overrides"
@@ -160,18 +160,18 @@ class TestConfigLoading(MockConfigTestCase):
     )
     def test_different_local_overrides(self):
         """Test that local configs correct when in a different working directory."""
-        from aardvark.config.config import _config_context
+        from expres.config.config import _config_context
 
         # Reset the config in _config_context just to be sure we load the
         # correct ones from the cwd.MockConfigTestCase
         _old_config = getattr(_config_context, "config", None)
         if hasattr(_config_context, "config"):
             delattr(_config_context, "config")
-        with mock.patch("aardvark.config.config.cwd", new=lambda: "folder1") as _mock:
+        with mock.patch("expres.config.config.cwd", new=lambda: "folder1") as _mock:
             _config_folder1 = config.get_config()
         if hasattr(_config_context, "config"):
             delattr(_config_context, "config")
-        with mock.patch("aardvark.config.config.cwd", new=lambda: "folder2") as _mock:
+        with mock.patch("expres.config.config.cwd", new=lambda: "folder2") as _mock:
             _config_folder2 = config.get_config()
         if _old_config is not None:
             _config_context.config = _old_config
@@ -195,7 +195,7 @@ class TestConfigLoading(MockConfigTestCase):
 
 # Make sure global and local configs are not set.
 @mock.patch.multiple(
-    "aardvark.config.config",
+    "expres.config.config",
     **patch_multiple_configs(global_config_yaml=None, local_config_yaml=None),
 )
 class TestConfigWithoutLoading(MockConfigTestCase):

@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -167,7 +167,7 @@ def fixture_path(fixtures_dir: str, nodeid: str, _name: str) -> str:
     )
 
 
-def aardvark_save_fixture(_path: str, _value: Experiment, overwrite: bool = True):
+def expres_save_fixture(_path: str, _value: Experiment, overwrite: bool = True):
     """Save a fixture to ``_path``, with ASDF.
 
     All arrays are stored internally for easier file management."""
@@ -181,7 +181,10 @@ def aardvark_save_fixture(_path: str, _value: Experiment, overwrite: bool = True
     if not path_exists(dirname(_path)):
         Path(dirname(_path)).mkdir(parents=True, exist_ok=True)
 
-    from aardvark.config import temp_config
+    try:
+        from aardvark.config import temp_config
+    except ImportError:
+        from expres.config import temp_config
 
     with temp_config() as _config:
         _config["storage_providers"]["folder_storage_provider"]["folder_format"] = (
@@ -200,11 +203,14 @@ def aardvark_save_fixture(_path: str, _value: Experiment, overwrite: bool = True
         )
 
 
-def aardvark_load_fixture(_path: str) -> Any:
+def expres_load_fixture(_path: str) -> Any:
     """Load a fixture from ``_path``, with ASDF."""
-    # Import Experiment from aardvark to override type-hint declaration in
+    # Import Experiment from expres to override type-hint declaration in
     # preamble.
-    from aardvark import Experiment
+    try:
+        from aardvark import Experiment
+    except ImportError:
+        from expres import Experiment
 
     return Experiment.load(Path(_path) / "experiment/experiment.asdf")
 
@@ -214,19 +220,19 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         "ASDF Fixtures", "Save/Replay fixture objects to/from pickle files"
     )
     group.addoption(
-        "--aardvark-fixtures-save",
+        "--expres-fixtures-save",
         action="store_true",
         default=False,
         help="Save annotated fixtures to ASDF files and do not run tests.",
     )
     group.addoption(
-        "--aardvark-fixtures-load",
+        "--expres-fixtures-load",
         action="store_true",
         default=False,
         help="Load fixtures from dir and pass to `saved` fixture.",
     )
     group.addoption(
-        "--aardvark-fixtures-dir",
+        "--expres-fixtures-dir",
         action="append",
         dest="fixtures_dir",
         # metavar="DIR",
@@ -234,12 +240,12 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Directory for saved fixtures. If saving, only one directory is allowed. Can be passed multiple times if loading, in which case tests will be run once per directory.",
     )
     group.addoption(
-        "--_aardvark-multirun-child",
+        "--_expres-multirun-child",
         action="store_true",
         default=False,
     )
     group.addoption(
-        "--_aardvark-fixtures-singlerun-dir",
+        "--_expres-fixtures-singlerun-dir",
         dest="fixtures_dir",
         # metavar="DIR",
         default=None,
@@ -247,7 +253,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
     )
 
     group.addoption(
-        "--aardvark-fixtures-when-missing",
+        "--expres-fixtures-when-missing",
         dest="fixtures_missing",
         choices=("error", "skip", "none"),
         default="error",
@@ -255,7 +261,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         "'error' (raise), 'skip' (skip test), 'none' (return None). Default: error.",
     )
     group.addoption(
-        "--aardvark-fixtures-overwrite",
+        "--expres-fixtures-overwrite",
         action="store_true",
         default=True,
         dest="fixtures_overwrite",
@@ -272,9 +278,9 @@ def _replace_args_for_child_run(orig_args):
             skip_next = False
             continue
         # *** Remove fixtures dir so we can pass one directory at a time
-        if _arg.startswith("--aardvark-fixtures-dir="):
+        if _arg.startswith("--expres-fixtures-dir="):
             continue
-        if _arg == "--aardvark-fixtures-dir":
+        if _arg == "--expres-fixtures-dir":
             skip_next = True
             continue
         cleaned.append(_arg)
@@ -282,25 +288,24 @@ def _replace_args_for_child_run(orig_args):
 
 
 def pytest_cmdline_main(config: pytest.Config):
-    """Handle running multiple child runs, or sub-sessions; once per --aardvark-fixtures-dir.
+    """Handle running multiple child runs, or sub-sessions; once per --expres-fixtures-dir.
 
-    This is done by parsing --aardvark-fixtures-dir and invoking pytest with each
-    directory. The value of this directory is stored in the hidden option
-    _aardvark_fixtures_singlerun_dir.
+    This is done by parsing --expres-fixtures-dir and invoking pytest with each
+    directory.
     """
     # If we are neither loading or saving, then this plugin does nothing.
-    if not config.getoption("aardvark_fixtures_load") and not config.getoption(
-        "aardvark_fixtures_save"
+    if not config.getoption("expres_fixtures_load") and not config.getoption(
+        "expres_fixtures_save"
     ):
         return None
 
-    # We are running pytest-aardvark-fixtures, so we must modify the cli args to
-    # handle multiple --aardvark-fixtures-dir values.
-    is_child = config.getoption("_aardvark_multirun_child")
+    # We are running pytest-expres-fixtures, so we must modify the cli args to
+    # handle multiple --expres-fixtures-dir values.
+    is_child = config.getoption("_expres_multirun_child")
     dirs = config.getoption("fixtures_dir") or []
     if not isinstance(dirs, list):
         dirs = [dirs]
-    save = config.getoption("--aardvark-fixtures-save")
+    save = config.getoption("--expres-fixtures-save")
     if save and len(dirs) > 1:
         raise pytest.UsageError(
             "Cannot save with multiple fixture directories. Got directories: \n{}".format(
@@ -315,7 +320,7 @@ def pytest_cmdline_main(config: pytest.Config):
         except Exception:
             base_args = sys.argv[1:]
 
-        # Remove duplicate --aardvark-fixtures-dir
+        # Remove duplicate --expres-fixtures-dir
         base_args = _replace_args_for_child_run(base_args)
 
         overall_exitcode = 0
@@ -326,8 +331,8 @@ def pytest_cmdline_main(config: pytest.Config):
 
             # Set hidden arguments
             child_args = base_args + [
-                f"--_aardvark-fixtures-singlerun-dir={_sub_dir}",
-                "--_aardvark-multirun-child",
+                f"--_expres-fixtures-singlerun-dir={_sub_dir}",
+                "--_expres-multirun-child",
             ]
 
             # Run child-run
@@ -351,8 +356,8 @@ def is_saved_fixture(fixture: pytest.FixtureDef[Any]) -> bool:
 
 def pytest_configure(config: pytest.Config):
     """Configure pytest with options for this plugin."""
-    save = config.getoption("--aardvark-fixtures-save")
-    load = config.getoption("--aardvark-fixtures-load")
+    save = config.getoption("--expres-fixtures-save")
+    load = config.getoption("--expres-fixtures-load")
     if save and load:
         raise pytest.UsageError("Can either save or load fixtures, not both.")
     if not save and not load:
@@ -366,7 +371,7 @@ def pytest_configure(config: pytest.Config):
     except Exception:
         invocation_args = sys.argv[1:]
 
-    config._aardvarkfixtures_state = {
+    config._expresfixtures_state = {
         "save": save,
         "load": load,
         "fixtures_dir": fixtures_dir,
@@ -381,8 +386,8 @@ def pytest_configure(config: pytest.Config):
 
 def pytest_unconfigure(config: pytest.Config):
     """Remove any added config details for this plugin."""
-    if hasattr(config, "_aardvarkfixtures_state"):
-        delattr(config, "_aardvarkfixtures_state")
+    if hasattr(config, "_expresfixtures_state"):
+        delattr(config, "_expresfixtures_state")
 
 
 @pytest.hookimpl(tryfirst=True)
@@ -394,8 +399,8 @@ def pytest_pyfunc_call(pyfuncitem: pytest.Function) -> bool | None:
     config = pyfuncitem.session.config
 
     # Get plugin state and return None if it isn't configured.
-    _plugin_state = getattr(config, "_aardvarkfixtures_state", {})
-    if not _running_aardvark_fixtures(_plugin_state):
+    _plugin_state = getattr(config, "_expresfixtures_state", {})
+    if not _running_expres_fixtures(_plugin_state):
         return None
     if not _plugin_state.get("save", False):
         return None
@@ -426,10 +431,10 @@ def pytest_pyfunc_call(pyfuncitem: pytest.Function) -> bool | None:
         _nodeid = pyfuncitem.nodeid
         _path = fixture_path(fixtures_dir, _nodeid, _name)
         try:
-            aardvark_save_fixture(_path, _value, overwrite=overwrite)
+            expres_save_fixture(_path, _value, overwrite=overwrite)
         except Exception as e:
             raise RuntimeError(
-                "[aardvark_fixture] Failed to save fixture to asdf file, with exception.",
+                "[expres_fixture] Failed to save fixture to asdf file, with exception.",
                 e,
             )
         _plugin_state["num_saved"] += 1
@@ -445,7 +450,7 @@ def saved_fixtures(request: pytest.FixtureRequest) -> dict[str, Any]:
     ``request`` contains information about the function/test to which this
     fixture is being passed.
     """
-    _plugin_state = getattr(request.config, "_aardvarkfixtures_state", {})
+    _plugin_state = getattr(request.config, "_expresfixtures_state", {})
     if not isinstance(_plugin_state, dict) or len(_plugin_state) == 0:
         raise RuntimeError(
             "Expres Fixture plugin config not populated. Got {} instead of expected dictionary.".format(
@@ -496,31 +501,31 @@ def saved_fixtures(request: pytest.FixtureRequest) -> dict[str, Any]:
         if not path_exists(_path):
             if _missing == "skip":
                 pytest.skip(
-                    "[aardvark_fixture] Missing asdf file for fixture {} at '{}'.".format(
+                    "[expres_fixture] Missing asdf file for fixture {} at '{}'.".format(
                         _name, _path
                     )
                 )
             elif _missing == "none":
-                request.config._aardvarkfixtures_state["num_missing"] += 1
+                request.config._expresfixtures_state["num_missing"] += 1
                 _fixture_values[_name] = None
                 continue
             elif _missing == "error":
-                request.config._aardvarkfixtures_state["num_missing"] += 1
+                request.config._expresfixtures_state["num_missing"] += 1
                 raise RuntimeError(
-                    "[aardvark_fixture] Missing asdf file for fixture {} at '{}'.".format(
+                    "[expres_fixture] Missing asdf file for fixture {} at '{}'.".format(
                         _name, _path
                     )
                 )
             else:
                 raise NotImplementedError(
-                    "[aardvark_fixture] Encountered missing saved fixture but have unexpected missing config value '{}'.".format(
+                    "[expres_fixture] Encountered missing saved fixture but have unexpected missing config value '{}'.".format(
                         _missing
                     )
                 )
 
         # Load saved values
-        _fixture_values[_name] = aardvark_load_fixture(_path)
-        request.config._aardvarkfixtures_state["num_loaded"] += 1
+        _fixture_values[_name] = expres_load_fixture(_path)
+        request.config._expresfixtures_state["num_loaded"] += 1
     return _fixture_values
 
 
@@ -548,11 +553,11 @@ def _centred_heading(heading: str, width: int, marker: str) -> str:
 
 def pytest_terminal_summary(terminalreporter: pytest.TerminalReporter, exitstatus):
     config = terminalreporter.config
-    _plugin_state = getattr(config, "_aardvarkfixtures_state", None)
-    if not _running_aardvark_fixtures(_plugin_state):
+    _plugin_state = getattr(config, "_expresfixtures_state", None)
+    if not _running_expres_fixtures(_plugin_state):
         return None
 
-    # We didn't run with pytest-aardvark-fixtures, or else we would have a plugin state.
+    # We didn't run with pytest-expres-fixtures, or else we would have a plugin state.
     if not isinstance(_plugin_state, dict):
         return
 
@@ -564,7 +569,7 @@ def pytest_terminal_summary(terminalreporter: pytest.TerminalReporter, exitstatu
     # If we're saving, just report the number of saved fixtures.
     if _plugin_state["save"]:
         terminalreporter.write_line(
-            "[aardvark-fixtures] Saved {} ASDF fixture files.".format(_num_saved),
+            "[expres_fixtures] Saved {} ASDF fixture files.".format(_num_saved),
             purple=True,
         )
     # If we're loading, report more detailed statistics
@@ -580,26 +585,26 @@ def pytest_terminal_summary(terminalreporter: pytest.TerminalReporter, exitstatu
 
 
 def pytest_report_header(config: pytest.Config):
-    _plugin_state = getattr(config, "_aardvarkfixtures_state", None)
+    _plugin_state = getattr(config, "_expresfixtures_state", None)
 
-    # We didn't run with pytest-aardvark-fixtures, or else we would have a plugin state.
+    # We didn't run with pytest-expres-fixtures, or else we would have a plugin state.
     if not isinstance(_plugin_state, dict):
         return None
 
-    if not _running_aardvark_fixtures(_plugin_state):
+    if not _running_expres_fixtures(_plugin_state):
         return None
 
     _saved_dir = _plugin_state.get("fixtures_dir")
     cli_args = _plugin_state.get("cli_args")
     head = []
     if _saved_dir:
-        head.append(f"[aardvark_fixture] active fixtures_dir: {_saved_dir}")
+        head.append(f"[expres_fixture] active fixtures_dir: {_saved_dir}")
     if cli_args:
-        head.append(f"[aardvark_fixture] original cli rgs: {' '.join(cli_args)}")
+        head.append(f"[expres_fixture] original cli rgs: {' '.join(cli_args)}")
     return "\n".join(head) if head else None
 
 
-def _running_aardvark_fixtures(plugin_state: dict[str, Any]) -> bool:
+def _running_expres_fixtures(plugin_state: dict[str, Any]) -> bool:
     return plugin_state is not None and (
         plugin_state.get("load", False) or plugin_state.get("save", False)
     )

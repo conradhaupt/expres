@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2026 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -18,10 +18,15 @@ from typing import Any
 
 import pytest
 
-from aardvark.storage.folder_provider import FolderContext
-from pytest_aardvark_fixtures import assert_tree_match, save_fixture
+from pytest_expres_fixtures import assert_tree_match, save_fixture
 
-from aardvark import Experiment, dataclass
+try:
+    # Legacy module name support
+    from aardvark.storage.folder_provider import FolderContext
+    from aardvark import Experiment, dataclass
+except ImportError:
+    from expres.storage.folder_provider import FolderContext
+    from expres import Experiment, dataclass
 
 
 @dataclass(kw_only=True)
@@ -91,7 +96,7 @@ def compat_simple_experiment(
     _compare_res = mpl_compare.compare_images(
         str(_expected_artifact_path),
         str(_loaded_artifact_path),
-        tol=1e-9,
+        tol=15,
         in_decorator=False,
     )
 

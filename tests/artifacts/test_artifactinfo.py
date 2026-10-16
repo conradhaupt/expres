@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -19,8 +19,8 @@ from os.path import join as path_join
 from pathlib import Path, PurePosixPath, PureWindowsPath
 
 import ddt
-from aardvark.artifacts import ArtifactInfo
-from aardvark.utils.tests import TestCase
+from expres.artifacts import ArtifactInfo
+from expres.utils.tests import TestCase
 
 VALID_ARTIFACT_PATHS_POSIX = [
     # Linux and MacOS paths

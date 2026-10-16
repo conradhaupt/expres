@@ -1,4 +1,4 @@
-# This code is part of Aardvark.
+# This code is part of Exprés.
 #
 # Copyright 2024-2025 Conrad Haupt <conrad@conradhaupt.com> and IBM.
 #
@@ -17,9 +17,9 @@
 from typing import Any
 
 import ddt
-from aardvark.artifacts import ArtifactCollection, ArtifactInfo
-from aardvark.artifacts.artifact_collection import ArtifactCollection
-from aardvark.utils.tests import TestCase
+from expres.artifacts import ArtifactCollection, ArtifactInfo
+from expres.artifacts.artifact_collection import ArtifactCollection
+from expres.utils.tests import TestCase
 
 
 class ArtifactCollectionTestCase(TestCase):
