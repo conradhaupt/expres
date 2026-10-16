@@ -3,10 +3,10 @@
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
 id: asdf://expres.org/asdf/schemas/experiment-0.2.0
 title: |
-  Top-level schema for every Aardvark experiment ASDF file.
+  Top-level schema for every Exprés experiment ASDF file.
 
 description: |
-  This schema contains the top-level attributes for every ASDF file, with some additional definitions for Aardvark
+  This schema contains the top-level attributes for every ASDF file, with some additional definitions for Exprés
   experiments, such as 'uuid'.
 
 type: object
