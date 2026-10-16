@@ -39,7 +39,7 @@ copyright = "2026, Conrad Haupt and Marc Sanz Drudis"
 author = "Conrad Haupt and Marc Sanz Drudis"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.4"
+release = "0.2.0"
 
 
 # -- General configuration ---------------------------------------------------

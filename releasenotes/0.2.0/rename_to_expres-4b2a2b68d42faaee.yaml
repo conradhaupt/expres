@@ -1,0 +1,5 @@
+upgrade:
+  - |
+    Rename package to ``expres``. Requires users to rename imports from
+    ``aardvark`` to ``expres``. User config files must also be renamed from
+    ``.aardvark.yml`` to ``.expres.yml``. Note the single ``s`` at the end.
