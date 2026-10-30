@@ -247,7 +247,7 @@ class TestArtifactCollection(ArtifactCollectionTestCase):
 
         for _source in ["data/a.txt", "data/b.bin"]:
             self.assertTrue(
-                self.artifacts.exists_for(source="data/a.txt"),
+                self.artifacts.exists_for(source=_source),
                 msg="Failed existence check for artifact with source {!r}.".format(
                     _source
                 ),

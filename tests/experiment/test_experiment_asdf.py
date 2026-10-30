@@ -78,6 +78,6 @@ class TestExperimentASDF(TestCase):
         exp = get_experiment()
         _file = BytesIO()
         exp._tree.write_to(_file)
-        _asdf_str = str(_file.getvalue())
+        _asdf_str = str(_file.getvalue(), encoding="utf-8")
         self.assertIn("uuid: !expres!core/uuid", _asdf_str)
         self.assertTrue("date_created: {}".format(str(DUMMY_DATETIME)) in _asdf_str)

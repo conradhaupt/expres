@@ -110,7 +110,7 @@ class TestExperimentAttributes(TestCase):
         self.assertTrue("other_attr" in exp._tree_attrs)
         _getattr = object.__getattribute__
         with self.assertRaises(AttributeError):
-            _getattr(self, "other_attr")
+            _getattr(exp, "other_attr")
 
     def test_deregistering_existing_attribute(self):
         exp = get_experiment()
@@ -278,28 +278,6 @@ class TestExperimentAttributesRoundTrip(TestCase):
             )
         except KeyError as e:
             raise pytest.fail("Tree attribute lost during roundtrip serialisation.")
-
-    def test_new_attribute_default_on_load(self):
-        @dataclass
-        class FirstExperiment(Experiment):
-            tree1: int
-
-        exp = FirstExperiment(tree1=0)
-        buff = BytesIO()
-        exp._tree.write_to(buff)
-        buff.seek(0)
-        tree = asdf.open(buff)
-
-        @dataclass
-        class SecondExperiment(Experiment):
-            tree1: int
-            tree2: int = field(default=10)
-
-        new_exp = SecondExperiment.__new__(SecondExperiment, tree=tree.copy())
-        try:
-            self.assertEqual(new_exp.tree2, 10)
-        except KeyError:
-            self.fail("New field, with default, not set on loaded experiment.")
 
     def test_new_attribute_default_on_load(self):
         @dataclass

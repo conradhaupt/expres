@@ -321,7 +321,7 @@ class TestArtifactUtils_restore_values_for_artifacts(TestCase):
         )
 
         for k in selected_keys:
-            self.assertTrue(tree[k], ArtifactInfo)
+            self.assertIsInstance(tree[k], ArtifactInfo)
 
         self.assertEqual(
             extracted_values, {k: v for k, v in values.items() if k in selected_keys}

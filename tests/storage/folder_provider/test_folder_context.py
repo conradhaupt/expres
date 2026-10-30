@@ -189,7 +189,7 @@ class TestFolderContext(TestCase):
         self.assertEqual(loaded_experiment.date_created, experiment.date_created)
         self.assertEqual(loaded_experiment.tree1, experiment.tree1)
         self.assertEqual(loaded_experiment.tree2, experiment.tree2)
-        self.assertTrue(loaded_experiment._context, experiment._context)
+        self.assertEqual(loaded_experiment._context, experiment._context)
         loaded_experiment._tree.close()
 
     def test_saved_asdffile_context(self):
@@ -330,7 +330,7 @@ class TestFolderContext(TestCase):
         self.assertEqual(loaded_experiment.date_created, experiment.date_created)
         self.assertEqual(loaded_experiment.tree1, experiment.tree1)
         self.assertEqual(loaded_experiment.tree2, experiment.tree2)
-        self.assertTrue(loaded_experiment._context, experiment._context)
+        self.assertEqual(loaded_experiment._context, context)
         loaded_experiment._tree.close()
 
     def test_save_twice_experiment(self):
@@ -400,7 +400,7 @@ class TestFolderContext(TestCase):
         self.assertEqual(loaded_experiment.date_created, experiment.date_created)
         self.assertEqual(loaded_experiment.tree1, experiment.tree1)
         self.assertEqual(loaded_experiment.tree2, experiment.tree2)
-        self.assertTrue(loaded_experiment._context, experiment._context)
+        self.assertEqual(loaded_experiment._context, experiment._context)
         loaded_experiment._tree.close()
 
     def test_save_twice_asdffile(self):

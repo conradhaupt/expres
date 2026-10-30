@@ -76,7 +76,7 @@ class MockExperiment(Experiment):
 # ContextVar. This forces the Config to call global_config and local_config_for.
 @mock.patch("expres.config.config.__must_init_config_context", new=lambda: True)
 class TestFolderProvider_TargetPathFor(MockConfigTestCase):
-    """ "Test :fun:`target_path_for` for :class:`FolderProvider`."""
+    """Test :fun:`target_path_for` for :class:`FolderProvider`."""
 
     def expected_path(
         self,
